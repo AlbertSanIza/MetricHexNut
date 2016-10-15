@@ -32,6 +32,33 @@ function run(context) {
       widthAcrossCornersMin: 5.45,
       thicknessMax: 2,
       thicknessMin: 1.75
+    },
+    {
+      nominalSize: 'M3',
+      threadPitch: 0.5,
+      widthAcrossFlatsMax: 5.5,
+      widthAcrossFlatsMin: 5.32,
+      widthAcrossCornersMin: 6.01,
+      thicknessMax: 2.4,
+      thicknessMin: 2.15
+    },
+    {
+      nominalSize: 'M4',
+      threadPitch: 0.7,
+      widthAcrossFlatsMax: 7,
+      widthAcrossFlatsMin: 6.78,
+      widthAcrossCornersMin: 7.66,
+      thicknessMax: 3.2,
+      thicknessMin: 2.9
+    },
+    {
+      nominalSize: 'M5',
+      threadPitch: 0.8,
+      widthAcrossFlatsMax: 8,
+      widthAcrossFlatsMin: 7.78,
+      widthAcrossCornersMin: 8.79,
+      thicknessMax: 4.7,
+      thicknessMin: 4.4
     }
   ];
 
