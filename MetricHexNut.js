@@ -3,6 +3,7 @@
 function run(context) {
 
   "use strict";
+
   var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
     {
@@ -42,6 +43,7 @@ function run(context) {
   var defaultCutAngle = 30.0 * (Math.PI / 180);
   var defaultChamferDistance = 0.03845;
   var defaultFilletRadius = 0.02994;
+
   var app = adsk.core.Application.get(), ui;
   if (app) {
     ui = app.userInterface;
@@ -55,23 +57,16 @@ function run(context) {
   }
   var newComp;
   function createNewComponent() {
-    // Get the active design.
     var rootComp = design.rootComponent;
     var allOccs = rootComp.occurrences;
     var newOcc = allOccs.addNewComponent(adsk.core.Matrix3D.create());
     newComp = newOcc.component;
   }
-
-  // Create the command definition.
   var createCommandDefinition = function() {
     var commandDefinitions = ui.commandDefinitions;
-    // Be fault tolerant in case the command is already added...
-    var cmDef = commandDefinitions.itemById('Bolt');
+    var cmDef = commandDefinitions.itemById('MetricHexNut');
     if (!cmDef) {
-      cmDef = commandDefinitions.addButtonDefinition('Bolt',
-      'Create Bolt',
-      'Create a bolt.',
-      './resources'); // relative resource file path is specified
+      cmDef = commandDefinitions.addButtonDefinition('MetricHexNut', 'Create Metric Hex Nut', 'Create a Metric Hex Nut.', './resources');
     }
     return cmDef;
   };
@@ -272,9 +267,7 @@ function run(context) {
   };
   try {
     if (adsk.debug === true) {
-      /*jslint debug: true*/
       debugger;
-      /*jslint debug: false*/
     }
     var command = createCommandDefinition();
     var commandCreatedEvent = command.commandCreated;
