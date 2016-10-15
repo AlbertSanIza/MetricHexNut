@@ -6,6 +6,24 @@
 		"":	"Create a Metric Hex Nut"
 	},
 	"supportedOS":	"windows|mac",
-	"autodeskLibraries":	["application", "dashboard", "geometry", "materials", "userInterface", "utilities", "bRep", "components", "construction", "features", "fusion", "meshBody", "meshData", "sketch", "tSpline", "operations", "cam"],
+	"autodeskLibraries":	[
+		"application",
+		"dashboard",
+		"geometry",
+		"materials",
+		"userInterface",
+		"utilities",
+		"bRep",
+		"components",
+		"construction",
+		"features",
+		"fusion",
+		"meshBody",
+		"meshData",
+		"sketch",
+		"tSpline",
+		"operations",
+		"cam"
+	],
 	"editEnabled":	true
 }
