@@ -6,51 +6,11 @@ function run(context) {
 
   var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
-    {
-      nominalSize: 'M1.6',
-      threadPitch: 0.35,
-      widthAcrossFlatsMax: 3.2,
-      widthAcrossFlatsMin: 3.02,
-      widthAcrossCornersMin: 3.41,
-      thicknessMax: 1.3,
-      thicknessMin: 1.05
-    },
-    {
-      nominalSize: 'M2',
-      threadPitch: 0.4,
-      widthAcrossFlatsMax: 4,
-      widthAcrossFlatsMin: 3.82,
-      widthAcrossCornersMin: 4.32,
-      thicknessMax: 1.6,
-      thicknessMin: 1.35
-    },
-    {
-      nominalSize: 'M2.5',
-      threadPitch: 0.45,
-      widthAcrossFlatsMax: 5,
-      widthAcrossFlatsMin: 4.82,
-      widthAcrossCornersMin: 5.45,
-      thicknessMax: 2,
-      thicknessMin: 1.75
-    },
-    {
-      nominalSize: 'M3',
-      threadPitch: 0.5,
-      widthAcrossFlatsMax: 5.5,
-      widthAcrossFlatsMin: 5.32,
-      widthAcrossCornersMin: 6.01,
-      thicknessMax: 2.4,
-      thicknessMin: 2.15
-    },
-    {
-      nominalSize: 'M4',
-      threadPitch: 0.7,
-      widthAcrossFlatsMax: 7,
-      widthAcrossFlatsMin: 6.78,
-      widthAcrossCornersMin: 7.66,
-      thicknessMax: 3.2,
-      thicknessMin: 2.9
-    },
+    {nominalSize: 'M1.6', threadPitch: 0.35, widthAcrossFlatsMax: 3.2, widthAcrossFlatsMin: 3.02, widthAcrossCornersMin: 3.41, thicknessMax: 1.3, thicknessMin: 1.05},
+    {nominalSize: 'M2', threadPitch: 0.4, widthAcrossFlatsMax: 4, widthAcrossFlatsMin: 3.82, widthAcrossCornersMin: 4.32, thicknessMax: 1.6, thicknessMin: 1.35},
+    {nominalSize: 'M2.5', threadPitch: 0.45, widthAcrossFlatsMax: 5, widthAcrossFlatsMin: 4.82, widthAcrossCornersMin: 5.45, thicknessMax: 2, thicknessMin: 1.75},
+    {nominalSize: 'M3', threadPitch: 0.5, widthAcrossFlatsMax: 5.5, widthAcrossFlatsMin: 5.32, widthAcrossCornersMin: 6.01, thicknessMax: 2.4, thicknessMin: 2.15},
+    {nominalSize: 'M4', threadPitch: 0.7, widthAcrossFlatsMax: 7, widthAcrossFlatsMin: 6.78, widthAcrossCornersMin: 7.66, thicknessMax: 3.2, thicknessMin: 2.9},
     {
       nominalSize: 'M5',
       threadPitch: 0.8,
