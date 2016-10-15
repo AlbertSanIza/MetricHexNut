@@ -1,7 +1,39 @@
 //Author-Albert Sanchez
 //Description-Create a Metric Hex Nut
 function run(context) {
+
   "use strict";
+
+  var metricHexNutMatrix = [
+    {
+      nominalSize: 'M1.6',
+      threadPitch: 0.35,
+      widthAcrossFlatsMax: 3.2,
+      widthAcrossFlatsMin: 3.02,
+      widthAcrossCornersMin: 3.41,
+      thicknessMax: 1.3,
+      thicknessMin: 1.05
+    },
+    {
+      nominalSize: 'M2',
+      threadPitch: 0.4,
+      widthAcrossFlatsMax: 4,
+      widthAcrossFlatsMin: 3.82,
+      widthAcrossCornersMin: 4.32,
+      thicknessMax: 1.6,
+      thicknessMin: 1.35
+    },
+    {
+      nominalSize: 'M2.5',
+      threadPitch: 0.45,
+      widthAcrossFlatsMax: 5,
+      widthAcrossFlatsMin: 4.82,
+      widthAcrossCornersMin: 5.45,
+      thicknessMax: 2,
+      thicknessMin: 1.75
+    }
+  ];
+
   var defaultBoltName = 'Bolt';
   var defaultHeadDiameter = 0.75;
   var defaultBodyDiameter = 0.5;
