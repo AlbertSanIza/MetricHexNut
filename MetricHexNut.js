@@ -3,7 +3,7 @@
 function run(context) {
 
   "use strict";
-
+  var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
     {
       nominalSize: 'M1.6',
