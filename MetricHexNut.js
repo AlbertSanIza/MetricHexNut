@@ -78,6 +78,15 @@ function run(context) {
       for (var i = 1; i < metricHexNutMatrix.length; i++) {
         initNominalSize.listItems.add(metricHexNutMatrix[i].nominalSize, false, '');
       }
+      initNominalSize.listItems.add('Custom', false, '');
+      var initThreadPitch = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].threadPitch);
+      inputs.addValueInput('threadPitch', 'Thread Pitch','cm',initThreadPitch);
+      var initWidthAcrossFlatsMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossFlatsMax);
+      inputs.addValueInput('widthAcrossFlatsMax', 'Width Across Flats','cm',initWidthAcrossFlatsMax);
+      var initWidthAcrossCornersMin = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossCornersMin);
+      inputs.addValueInput('widthAcrossCornersMin', 'Width Across Corners','cm',initWidthAcrossCornersMin);
+      var initThicknessMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].thicknessMax);
+      inputs.addValueInput('thicknessMax', 'Thickness','cm',initThicknessMax);
 
       inputs.addStringValueInput('boltName', 'Blot Name', defaultBoltName);
       var initHeadDiameter = adsk.core.ValueInput.createByReal(defaultHeadDiameter);
