@@ -97,7 +97,6 @@ function run(context) {
       inputs.addValueInput('headHeight', 'Head Height', 'cm', initHeadHeight);
       var initBodyLength = adsk.core.ValueInput.createByReal(defaultBodyLength);
       inputs.addValueInput('bodyLength', 'Body Length', 'cm', initBodyLength);
-      //to do the thread length
       var initCutAngle = adsk.core.ValueInput.createByReal(defaultCutAngle);
       inputs.addValueInput('cutAngle', 'Cut Angle', 'deg', initCutAngle);
       var initChamferDistance = adsk.core.ValueInput.createByReal(defaultChamferDistance);
@@ -109,39 +108,30 @@ function run(context) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
     }
   };
-  // CommandExecuted event handler.
   var onCommandExecuted = function(args) {
     try {
       var unitsMgr = app.activeProduct.unitsManager;
       var command = adsk.core.Command(args.firingEvent.sender);
       var inputs = command.commandInputs;
+      var metricHexNut = new MetricHexNut();
       var bolt = new Bolt();
-      // Problem with a problem - the inputs are empty at this point. We
-      // need access to the inputs within a command during the execute.
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
         if (input.id === 'boltName') {
           bolt.boltName = input.value;
-        }
-        else if (input.id === 'headDiameter') {
+        } else if (input.id === 'headDiameter') {
           bolt.headDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
-        }
-        else if (input.id === 'bodyDiameter') {
+        } else if (input.id === 'bodyDiameter') {
           bolt.bodyDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
-        }
-        else if (input.id === 'headHeight') {
+        } else if (input.id === 'headHeight') {
           bolt.headHeight = unitsMgr.evaluateExpression(input.expression, "cm");
-        }
-        else if (input.id === 'bodyLength') {
+        } else if (input.id === 'bodyLength') {
           bolt.bodyLength = adsk.core.ValueInput.createByString(input.expression);
-        }
-        else if (input.id === 'cutAngle') {
+        } else if (input.id === 'cutAngle') {
           bolt.cutAngle = unitsMgr.evaluateExpression(input.expression, "deg");
-        }
-        else if (input.id === 'chamferDistance') {
+        } else if (input.id === 'chamferDistance') {
           bolt.chamferDistance = adsk.core.ValueInput.createByString(input.expression);
-        }
-        else if (input.id === 'filletRadius') {
+        } else if (input.id === 'filletRadius') {
           bolt.filletRadius = adsk.core.ValueInput.createByString(input.expression);
         }
       }
@@ -152,7 +142,9 @@ function run(context) {
       ui.messageBox('Failed to create Bolt : ' + (e.description ? e.description : e));
     }
   };
-  var Bolt = function(){
+  var MetricHexNut = function() {
+  };
+  var Bolt = function() {
     this.boltName = defaultBoltName;
     this.headDiameter = defaultHeadDiameter;
     this.bodyDiameter = defaultBodyDiameter;
