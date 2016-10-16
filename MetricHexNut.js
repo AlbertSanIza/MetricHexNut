@@ -4,7 +4,7 @@ function run(context) {
 
   "use strict";
 
-  var defaultMetricHexNutName = 'Metric Hex Nut';
+  var defaultMetricHexNutName = 'Hex Nut';
   var metricHexNutMatrix = [
     {nominalSize: 'M1.6', threadPitch: 0.35, widthAcrossFlatsMax: 3.2, widthAcrossFlatsMin: 3.02, widthAcrossCornersMin: 3.41, thicknessMax: 1.3, thicknessMin: 1.05},
     {nominalSize: 'M2', threadPitch: 0.4, widthAcrossFlatsMax: 4, widthAcrossFlatsMin: 3.82, widthAcrossCornersMin: 4.32, thicknessMax: 1.6, thicknessMin: 1.35},
@@ -62,19 +62,18 @@ function run(context) {
     }
     return cmDef;
   };
-  // CommandCreated event handler.
   var onCommandCreated = function(args) {
     try {
-      // Connect to the CommandExecuted event.
       var command = args.command;
       command.isRepeatable = false;
       command.execute.add(onCommandExecuted);
-      // Connect to the CommandPreviewExecuted event.
       command.executePreview.add(onCommandExecuted);
-      // Terminate the script when the command is destroyed
-      command.destroy.add(function () { adsk.terminate(); });
-      // Define the inputs.
+      command.destroy.add(function() {
+        adsk.terminate();
+      });
       var inputs = command.commandInputs;
+      inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', defaultMetricHexNutName);
+      
       inputs.addStringValueInput('boltName', 'Blot Name', defaultBoltName);
       var initHeadDiameter = adsk.core.ValueInput.createByReal(defaultHeadDiameter);
       inputs.addValueInput('headDiameter', 'Head Diameter','cm',initHeadDiameter);
