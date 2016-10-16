@@ -73,7 +73,12 @@ function run(context) {
       });
       var inputs = command.commandInputs;
       inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', defaultMetricHexNutName);
-      
+      var initNominalSize = inputs.addDropDownCommandInput('nominalSize', 'Nominal Size', adsk.core.DropDownStyles.TextListDropDownStyle);
+      initNominalSize.listItems.add(metricHexNutMatrix[0].nominalSize, true, '');
+      for (var i = 1; i < metricHexNutMatrix.length; i++) {
+        initNominalSize.listItems.add(metricHexNutMatrix[i].nominalSize, false, '');
+      }
+
       inputs.addStringValueInput('boltName', 'Blot Name', defaultBoltName);
       var initHeadDiameter = adsk.core.ValueInput.createByReal(defaultHeadDiameter);
       inputs.addValueInput('headDiameter', 'Head Diameter','cm',initHeadDiameter);
