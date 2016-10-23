@@ -115,6 +115,19 @@ function run(context) {
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
       var bolt = new Bolt();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'nominalSize') {
+          var selectedItem = input.selectedItem.name;
+          if (selectedItem == 'Custom') {
+          } else {
+            for (var j = 0; j < metricHexNut.length; j++) {
+              if (metricHexNut.nominalSize == selectedItem) {
+              }
+            }
+          }
+        }
+      }
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
         if (input.id === 'boltName') {
