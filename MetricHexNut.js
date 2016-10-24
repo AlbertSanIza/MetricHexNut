@@ -108,6 +108,23 @@ function run(context) {
       inputs.addValueInput('chamferDistance', 'Chamfer Distance', 'cm', initChamferDistance);
       var initFilletRadius = adsk.core.ValueInput.createByReal(defaultFilletRadius);
       inputs.addValueInput('filletRadius', 'Fillet Radius', 'cm', initFilletRadius);
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        switch (input.id) {
+          case 'textBoxThreadPitch':
+          case 'textBoxWidthAcrossFlatsMax':
+          case 'textBoxWidthAcrossCornersMin':
+          case 'textBoxThicknessMax':
+          input.isVisible = true;
+          break;
+          case 'threadPitch':
+          case 'widthAcrossFlatsMax':
+          case 'widthAcrossCornersMin':
+          case 'thicknessMax':
+          input.isVisible = false;
+          break;
+        }
+      }
     }
     catch (e) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
@@ -126,34 +143,68 @@ function run(context) {
         var input = inputs.item(i);
         if (input.id === 'nominalSize') {
           selectedItem = input.selectedItem.name;
-          for (var j = 0; j < inputs.count; j++) {
-            var input2 = inputs.item(j);
-            switch (input2.id) {
-              case 'textBoxThreadPitch':
-              case 'textBoxWidthAcrossFlatsMax':
-              case 'textBoxWidthAcrossCornersMin':
-              case 'textBoxThicknessMax':
-              if (selectedItem == 'Custom') {
-                input2.isVisible = false;
-              } else {
-                input2.isVisible = true;
-              }
-              break;
-              case 'threadPitch':
-              case 'widthAcrossFlatsMax':
-              case 'widthAcrossCornersMin':
-              case 'thicknessMax':
-              if (selectedItem == 'Custom') {
-                input2.isVisible = true;
-              } else {
-                input2.isVisible = false;
-              }
-              break;
+          if (selectedItem != lastSelectedItem) {
+            if (lastSelectedItem == 'Custom' || selectedItem == 'Custom') {
+              for (var j = 0; j < inputs.count; j++) {
+                var input2 = inputs.item(j);
+                switch (input2.id) {
+                  case 'textBoxThreadPitch':
+                  case 'textBoxWidthAcrossFlatsMax':
+                  case 'textBoxWidthAcrossCornersMin':
+                  case 'textBoxThicknessMax':
+                  if (selectedItem == 'Custom') {
+                    input2.isVisible = false;
+                  } else {
+                    input2.isVisible = true;
+                  }
+                  break;
+                  case 'threadPitch':
+                  case 'widthAcrossFlatsMax':
+                  case 'widthAcrossCornersMin':
+                  case 'thicknessMax':
+                  if (selectedItem == 'Custom') {
+                    input2.isVisible = true;
+                  } else {
+                    input2.isVisible = false;
+                  }
+                  break;
+                }
+              }  
             }
           }
           break;
         }
       }
+      var selectedItemObject;
+      if (selectedItem != 'Custom') {
+        for (var i = 0; i < metricHexNutMatrix.length; i++) {
+          if (metricHexNutMatrix[i].nominalSize == selectedItem) {
+            selectedItemObject = metricHexNutMatrix[i];
+            for (var j = 0; j < inputs.count; j++) {
+              var input = inputs.item(j);
+              if (input.id === 'textBoxThreadPitch') {
+                input.text = selectedItemObject.threadPitch + " cm";
+              } else if (input.id === 'threadPitch') {
+                input.value = selectedItemObject.threadPitch;
+              } else if (input.id === 'textBoxWidthAcrossFlatsMax') {
+                input.text = selectedItemObject.widthAcrossFlatsMax + " cm";
+              } else if (input.id === 'widthAcrossFlatsMax') {
+                input.value = selectedItemObject.widthAcrossFlatsMax;
+              } else if (input.id === 'textBoxWidthAcrossCornersMin') {
+                input.text = selectedItemObject.widthAcrossCornersMin + " cm";
+              } else if (input.id === 'widthAcrossCornersMin') {
+                input.value = selectedItemObject.widthAcrossCornersMin;
+              } else if (input.id === 'textBoxThicknessMax') {
+                input.text = selectedItemObject.thicknessMax + " cm";
+              } else if (input.id === 'thicknessMax') {
+                input.value = selectedItemObject.thicknessMax;
+              }
+            }
+            break;
+          }
+        }
+      }
+      lastSelectedItem = selectedItem;
 
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
