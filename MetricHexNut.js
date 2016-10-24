@@ -169,7 +169,7 @@ function run(context) {
                   }
                   break;
                 }
-              }  
+              }
             }
           }
           break;
@@ -205,6 +205,13 @@ function run(context) {
         }
       }
       lastSelectedItem = selectedItem;
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'metricHexNutName') {
+          metricHexNut.metricHexNutName = input.value;
+        }
+      }
+
 
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
@@ -234,6 +241,7 @@ function run(context) {
     }
   };
   var MetricHexNut = function() {
+    this.metricHexNutName = defaultMetricHexNutName;
   };
   var Bolt = function() {
     this.boltName = defaultBoltName;
