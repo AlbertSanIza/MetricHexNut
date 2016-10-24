@@ -26,6 +26,7 @@ function run(context) {
     {nominalSize: 'M56', threadPitch: 5.5, widthAcrossFlatsMax: 85, widthAcrossFlatsMin: 82.8, widthAcrossCornersMin: 93.56, thicknessMax: 45, thicknessMin: 43.4},
     {nominalSize: 'M64', threadPitch: 6, widthAcrossFlatsMax: 95, widthAcrossFlatsMin: 92.8, widthAcrossCornersMin: 104.86, thicknessMax: 51, thicknessMin: 49.1}
   ];
+  var lastSelectedItem = 'M1.6';
 
   var defaultBoltName = 'Bolt';
   var defaultHeadDiameter = 0.75;
@@ -81,12 +82,16 @@ function run(context) {
       initNominalSize.listItems.add('Custom', false, '');
       var initThreadPitch = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].threadPitch);
       inputs.addValueInput('threadPitch', 'Thread Pitch','cm',initThreadPitch);
+      inputs.addTextBoxCommandInput('textBoxThreadPitch', 'Thread Pitch', metricHexNutMatrix[0].threadPitch + " cm", 1, true);
       var initWidthAcrossFlatsMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossFlatsMax);
       inputs.addValueInput('widthAcrossFlatsMax', 'Width Across Flats','cm',initWidthAcrossFlatsMax);
+      inputs.addTextBoxCommandInput('textBoxWidthAcrossFlatsMax', 'Width Across Flats', metricHexNutMatrix[0].widthAcrossFlatsMax + " cm", 1, true);
       var initWidthAcrossCornersMin = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossCornersMin);
       inputs.addValueInput('widthAcrossCornersMin', 'Width Across Corners','cm',initWidthAcrossCornersMin);
+      inputs.addTextBoxCommandInput('textBoxWidthAcrossCornersMin', 'Width Across Corners', metricHexNutMatrix[0].widthAcrossCornersMin + " cm", 1, true);
       var initThicknessMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].thicknessMax);
       inputs.addValueInput('thicknessMax', 'Thickness','cm',initThicknessMax);
+      inputs.addTextBoxCommandInput('textBoxThicknessMax', 'Thickness', metricHexNutMatrix[0].thicknessMax + " cm", 1, true);
 
       inputs.addStringValueInput('boltName', 'Blot Name', defaultBoltName);
       var initHeadDiameter = adsk.core.ValueInput.createByReal(defaultHeadDiameter);
@@ -116,20 +121,47 @@ function run(context) {
       var metricHexNut = new MetricHexNut();
       var bolt = new Bolt();
 
-      var selectedItem, selectedItemObject;
+      var selectedItem;
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'nominalSize') {
           selectedItem = input.selectedItem.name;
-          if(selectedItem != 'Custom') {
-            for (var j = 0; j < metricHexNutMatrix.length; j++) {
-              if (metricHexNutMatrix[j].nominalSize == selectedItem) {
-                selectedItemObject = metricHexNutMatrix[j];
+          if (selectedItem == 'Custom') {
+            for (var j = 0; j < inputs.count; j++) {
+              var input2 = inputs.item(j);
+              switch (input2.id) {
+                case 'textBoxThreadPitch':
+                case 'textBoxWidthAcrossFlatsMax':
+                case 'textBoxWidthAcrossCornersMin':
+                case 'textBoxThicknessMax':
+                input2.isVisible = false;
+                break;
+                case 'threadPitch':
+                case 'widthAcrossFlatsMax':
+                case 'widthAcrossCornersMin':
+                case 'thicknessMax':
+                input2.isVisible = true;
                 break;
               }
             }
           } else {
-            selectedItemObject = null;
+            for (var j = 0; j < inputs.count; j++) {
+              var input2 = inputs.item(j);
+              switch (input2.id) {
+                case 'textBoxThreadPitch':
+                case 'textBoxWidthAcrossFlatsMax':
+                case 'textBoxWidthAcrossCornersMin':
+                case 'textBoxThicknessMax':
+                input2.isVisible = true;
+                break;
+                case 'threadPitch':
+                case 'widthAcrossFlatsMax':
+                case 'widthAcrossCornersMin':
+                case 'thicknessMax':
+                input2.isVisible = false;
+                break;
+              }
+            }
           }
           break;
         }
