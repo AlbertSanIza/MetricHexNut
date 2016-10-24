@@ -115,39 +115,26 @@ function run(context) {
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
       var bolt = new Bolt();
+
+      var selectedItem, selectedItemObject;
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'nominalSize') {
-          var selectedItem = input.selectedItem.name;
-          if (selectedItem == 'Custom') {
-          } else {
-            for (var j = 0; j < metricHexNut.length; j++) {
-              if (metricHexNut.nominalSize == selectedItem) {
+          selectedItem = input.selectedItem.name;
+          if(selectedItem != 'Custom') {
+            for (var j = 0; j < metricHexNutMatrix.length; j++) {
+              if (metricHexNutMatrix[j].nominalSize == selectedItem) {
+                selectedItemObject = metricHexNutMatrix[j];
+                break;
               }
             }
+          } else {
+            selectedItemObject = null;
           }
+          break;
         }
       }
-      for (var n = 0; n < inputs.count; n++) {
-        var input = inputs.item(n);
-        if (input.id === 'boltName') {
-          bolt.boltName = input.value;
-        } else if (input.id === 'headDiameter') {
-          bolt.headDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'bodyDiameter') {
-          bolt.bodyDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'headHeight') {
-          bolt.headHeight = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'bodyLength') {
-          bolt.bodyLength = adsk.core.ValueInput.createByString(input.expression);
-        } else if (input.id === 'cutAngle') {
-          bolt.cutAngle = unitsMgr.evaluateExpression(input.expression, "deg");
-        } else if (input.id === 'chamferDistance') {
-          bolt.chamferDistance = adsk.core.ValueInput.createByString(input.expression);
-        } else if (input.id === 'filletRadius') {
-          bolt.filletRadius = adsk.core.ValueInput.createByString(input.expression);
-        }
-      }
+      
       bolt.buildBolt();
       args.isValidResult = true;
     }
