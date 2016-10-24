@@ -134,7 +134,26 @@ function run(context) {
           break;
         }
       }
-      
+      for (var n = 0; n < inputs.count; n++) {
+        var input = inputs.item(n);
+        if (input.id === 'boltName') {
+          bolt.boltName = input.value;
+        } else if (input.id === 'headDiameter') {
+          bolt.headDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'bodyDiameter') {
+          bolt.bodyDiameter = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'headHeight') {
+          bolt.headHeight = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'bodyLength') {
+          bolt.bodyLength = adsk.core.ValueInput.createByString(input.expression);
+        } else if (input.id === 'cutAngle') {
+          bolt.cutAngle = unitsMgr.evaluateExpression(input.expression, "deg");
+        } else if (input.id === 'chamferDistance') {
+          bolt.chamferDistance = adsk.core.ValueInput.createByString(input.expression);
+        } else if (input.id === 'filletRadius') {
+          bolt.filletRadius = adsk.core.ValueInput.createByString(input.expression);
+        }
+      }
       bolt.buildBolt();
       args.isValidResult = true;
     }
