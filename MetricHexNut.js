@@ -211,7 +211,7 @@ function run(context) {
           metricHexNut.metricHexNutName = input.value;
         }
       }
-
+      metricHexNut.buildMetricHexNut();
 
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
@@ -242,6 +242,8 @@ function run(context) {
   };
   var MetricHexNut = function() {
     this.metricHexNutName = defaultMetricHexNutName;
+    this.buildMetricHexNut = function() {
+    };
   };
   var Bolt = function() {
     this.boltName = defaultBoltName;
