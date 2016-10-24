@@ -126,46 +126,35 @@ function run(context) {
         var input = inputs.item(i);
         if (input.id === 'nominalSize') {
           selectedItem = input.selectedItem.name;
-          if (selectedItem == 'Custom') {
-            for (var j = 0; j < inputs.count; j++) {
-              var input2 = inputs.item(j);
-              switch (input2.id) {
-                case 'textBoxThreadPitch':
-                case 'textBoxWidthAcrossFlatsMax':
-                case 'textBoxWidthAcrossCornersMin':
-                case 'textBoxThicknessMax':
+          for (var j = 0; j < inputs.count; j++) {
+            var input2 = inputs.item(j);
+            switch (input2.id) {
+              case 'textBoxThreadPitch':
+              case 'textBoxWidthAcrossFlatsMax':
+              case 'textBoxWidthAcrossCornersMin':
+              case 'textBoxThicknessMax':
+              if (selectedItem == 'Custom') {
                 input2.isVisible = false;
-                break;
-                case 'threadPitch':
-                case 'widthAcrossFlatsMax':
-                case 'widthAcrossCornersMin':
-                case 'thicknessMax':
+              } else {
                 input2.isVisible = true;
-                break;
               }
-            }
-          } else {
-            for (var j = 0; j < inputs.count; j++) {
-              var input2 = inputs.item(j);
-              switch (input2.id) {
-                case 'textBoxThreadPitch':
-                case 'textBoxWidthAcrossFlatsMax':
-                case 'textBoxWidthAcrossCornersMin':
-                case 'textBoxThicknessMax':
+              break;
+              case 'threadPitch':
+              case 'widthAcrossFlatsMax':
+              case 'widthAcrossCornersMin':
+              case 'thicknessMax':
+              if (selectedItem == 'Custom') {
                 input2.isVisible = true;
-                break;
-                case 'threadPitch':
-                case 'widthAcrossFlatsMax':
-                case 'widthAcrossCornersMin':
-                case 'thicknessMax':
+              } else {
                 input2.isVisible = false;
-                break;
               }
+              break;
             }
           }
           break;
         }
       }
+
       for (var n = 0; n < inputs.count; n++) {
         var input = inputs.item(n);
         if (input.id === 'boltName') {
