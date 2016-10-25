@@ -246,7 +246,7 @@ function run(context) {
       var center = adsk.core.Point3D.create(0, 0, 0);
       var vertices =[];
       for (var i = 0; i < 6; i++) {
-        var vertex = adsk.core.Point3D.create(center.x + (this.widthAcrossFlatsMax / 2) * Math.cos(Math.PI * i / 3), center.y + (this.widthAcrossFlatsMax / 2) * Math.sin(Math.PI * i / 3), 0);
+        var vertex = adsk.core.Point3D.create(center.x + (this.widthAcrossCornersMin / 2) * Math.cos(Math.PI * i / 3), center.y + (this.widthAcrossCornersMin / 2) * Math.sin(Math.PI * i / 3), 0);
         vertices.push(vertex);
       }
       for(i = 0; i < 6; i++) {
