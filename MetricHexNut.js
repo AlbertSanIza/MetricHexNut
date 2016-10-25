@@ -25,20 +25,16 @@ function run(context) {
     {name: 'M64',  d: 64,  thread: 6,    af: 95,  ac: 104.86, k: 51}
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
-    metricHexNutMatrix[i].nominalDiameter = metricHexNutMatrix[i].nominalDiameter / 10;
-    metricHexNutMatrix[i].nominalDiameter = metricHexNutMatrix[i].nominalDiameter.toFixed(3);
-    metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch / 10;
-    metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch.toFixed(3);
-    metricHexNutMatrix[i].widthAcrossFlatsMax = metricHexNutMatrix[i].widthAcrossFlatsMax / 10;
-    metricHexNutMatrix[i].widthAcrossFlatsMax = metricHexNutMatrix[i].widthAcrossFlatsMax.toFixed(3);
-    metricHexNutMatrix[i].widthAcrossFlatsMin = metricHexNutMatrix[i].widthAcrossFlatsMin / 10;
-    metricHexNutMatrix[i].widthAcrossFlatsMin = metricHexNutMatrix[i].widthAcrossFlatsMin.toFixed(3);
-    metricHexNutMatrix[i].widthAcrossCornersMin = metricHexNutMatrix[i].widthAcrossCornersMin / 10;
-    metricHexNutMatrix[i].widthAcrossCornersMin = metricHexNutMatrix[i].widthAcrossCornersMin.toFixed(3);
-    metricHexNutMatrix[i].thicknessMax = metricHexNutMatrix[i].thicknessMax / 10;
-    metricHexNutMatrix[i].thicknessMax = metricHexNutMatrix[i].thicknessMax.toFixed(3);
-    metricHexNutMatrix[i].thicknessMin = metricHexNutMatrix[i].thicknessMin / 10;
-    metricHexNutMatrix[i].thicknessMin = metricHexNutMatrix[i].thicknessMin.toFixed(3);
+    metricHexNutMatrix[i].d = metricHexNutMatrix[i].d / 10;
+    metricHexNutMatrix[i].d = metricHexNutMatrix[i].d.toFixed(3);
+    metricHexNutMatrix[i].af = metricHexNutMatrix[i].af / 10;
+    metricHexNutMatrix[i].af = metricHexNutMatrix[i].af.toFixed(3);
+    metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac / 10;
+    metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac.toFixed(3);
+    metricHexNutMatrix[i].k = metricHexNutMatrix[i].k / 10;
+    metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(3);
+    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread / 10;
+    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread.toFixed(3);
   }
   var lastSelectedItem = 'M1.6';
   var app = adsk.core.Application.get(), ui;
