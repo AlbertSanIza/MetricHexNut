@@ -24,6 +24,20 @@ function run(context) {
     {nominalSize: 'M56', threadPitch: 5.5, widthAcrossFlatsMax: 85, widthAcrossFlatsMin: 82.8, widthAcrossCornersMin: 93.56, thicknessMax: 45, thicknessMin: 43.4},
     {nominalSize: 'M64', threadPitch: 6, widthAcrossFlatsMax: 95, widthAcrossFlatsMin: 92.8, widthAcrossCornersMin: 104.86, thicknessMax: 51, thicknessMin: 49.1}
   ];
+  for (var i = 0; i < metricHexNutMatrix.length; i++) {
+    metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch / 10;
+    metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch.toFixed(3);
+    metricHexNutMatrix[i].widthAcrossFlatsMax = metricHexNutMatrix[i].widthAcrossFlatsMax / 10;
+    metricHexNutMatrix[i].widthAcrossFlatsMax = metricHexNutMatrix[i].widthAcrossFlatsMax.toFixed(3);
+    metricHexNutMatrix[i].widthAcrossFlatsMin = metricHexNutMatrix[i].widthAcrossFlatsMin / 10;
+    metricHexNutMatrix[i].widthAcrossFlatsMin = metricHexNutMatrix[i].widthAcrossFlatsMin.toFixed(3);
+    metricHexNutMatrix[i].widthAcrossCornersMin = metricHexNutMatrix[i].widthAcrossCornersMin / 10;
+    metricHexNutMatrix[i].widthAcrossCornersMin = metricHexNutMatrix[i].widthAcrossCornersMin.toFixed(3);
+    metricHexNutMatrix[i].thicknessMax = metricHexNutMatrix[i].thicknessMax / 10;
+    metricHexNutMatrix[i].thicknessMax = metricHexNutMatrix[i].thicknessMax.toFixed(3);
+    metricHexNutMatrix[i].thicknessMin = metricHexNutMatrix[i].thicknessMin / 10;
+    metricHexNutMatrix[i].thicknessMin = metricHexNutMatrix[i].thicknessMin.toFixed(3);
+  }
   var lastSelectedItem = 'M1.6';
   var app = adsk.core.Application.get(), ui;
   if (app) {
@@ -203,6 +217,25 @@ function run(context) {
     this.widthAcrossCornersMin = metricHexNutMatrix[0].widthAcrossCornersMin;
     this.thicknessMax = metricHexNutMatrix[0].thicknessMax;
     this.buildMetricHexNut = function() {
+      createNewComponent();
+      if (!newComp) {
+        ui.messageBox('New component failed to create', 'New Component Failed');
+        adsk.terminate();
+        return;
+      }
+      var sketches = newComp.sketches;
+      var xyPlane = newComp.xYConstructionPlane;
+      var xzPlane = newComp.xZConstructionPlane;
+      var sketch = sketches.add(xyPlane);
+      var center = adsk.core.Point3D.create(0, 0, 0);
+      var vertices =[];
+      for (var i = 0; i < 6; i++) {
+        var vertex = adsk.core.Point3D.create(center.x + (this.widthAcrossFlatsMax / 2) * Math.cos(Math.PI * i / 3), center.y + (this.widthAcrossFlatsMax / 2) * Math.sin(Math.PI * i / 3), 0);
+        vertices.push(vertex);
+      }
+      for(i = 0; i < 6; i++) {
+        sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
+      }
     };
   };
   try {
