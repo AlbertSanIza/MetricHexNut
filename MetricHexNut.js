@@ -77,6 +77,7 @@ function run(context) {
         adsk.terminate();
       });
       var inputs = command.commandInputs;
+      inputs.addImageCommandInput("image", "", "resources/example.png");
       inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', defaultMetricHexNutName);
       var initNominalSize = inputs.addDropDownCommandInput('nominalSize', 'Nominal Size', adsk.core.DropDownStyles.TextListDropDownStyle);
       initNominalSize.listItems.add(metricHexNutMatrix[0].nominalSize, true, '');
