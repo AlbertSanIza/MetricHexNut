@@ -4,25 +4,25 @@ function run(context) {
   "use strict";
   var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
-    {nominalSize: 'M1.6', nominalDiameter: 1.6, threadPitch: 0.35, widthAcrossFlatsMax: 3.2, widthAcrossFlatsMin: 3.02, widthAcrossCornersMin: 3.41, thicknessMax: 1.3, thicknessMin: 1.05},
-    {nominalSize: 'M2', nominalDiameter: 2, threadPitch: 0.4, widthAcrossFlatsMax: 4, widthAcrossFlatsMin: 3.82, widthAcrossCornersMin: 4.32, thicknessMax: 1.6, thicknessMin: 1.35},
-    {nominalSize: 'M2.5', nominalDiameter: 2.5, threadPitch: 0.45, widthAcrossFlatsMax: 5, widthAcrossFlatsMin: 4.82, widthAcrossCornersMin: 5.45, thicknessMax: 2, thicknessMin: 1.75},
-    {nominalSize: 'M3', nominalDiameter: 3, threadPitch: 0.5, widthAcrossFlatsMax: 5.5, widthAcrossFlatsMin: 5.32, widthAcrossCornersMin: 6.01, thicknessMax: 2.4, thicknessMin: 2.15},
-    {nominalSize: 'M4', nominalDiameter: 4, threadPitch: 0.7, widthAcrossFlatsMax: 7, widthAcrossFlatsMin: 6.78, widthAcrossCornersMin: 7.66, thicknessMax: 3.2, thicknessMin: 2.9},
-    {nominalSize: 'M5', nominalDiameter: 5, threadPitch: 0.8, widthAcrossFlatsMax: 8, widthAcrossFlatsMin: 7.78, widthAcrossCornersMin: 8.79, thicknessMax: 4.7, thicknessMin: 4.4},
-    {nominalSize: 'M6', nominalDiameter: 6, threadPitch: 1, widthAcrossFlatsMax: 10, widthAcrossFlatsMin: 9.78, widthAcrossCornersMin: 11.05, thicknessMax: 5.2, thicknessMin: 4.9},
-    {nominalSize: 'M10', nominalDiameter: 10, threadPitch: 1.5, widthAcrossFlatsMax: 16, widthAcrossFlatsMin: 15.73, widthAcrossCornersMin: 17.77, thicknessMax: 8.4, thicknessMin: 8.04},
-    {nominalSize: 'M12', nominalDiameter: 12, threadPitch: 1.75, widthAcrossFlatsMax: 18, widthAcrossFlatsMin: 17.73, widthAcrossCornersMin: 20.03, thicknessMax: 10.8, thicknessMin: 10.37},
-    {nominalSize: 'M14', nominalDiameter: 14, threadPitch: 2, widthAcrossFlatsMax: 21, widthAcrossFlatsMin: 20.67, widthAcrossCornersMin: 23.35, thicknessMax: 12.8, thicknessMin: 12.1},
-    {nominalSize: 'M16', nominalDiameter: 16, threadPitch: 2, widthAcrossFlatsMax: 24, widthAcrossFlatsMin: 23.67, widthAcrossCornersMin: 26.75, thicknessMax: 14.8, thicknessMin: 14.1},
-    {nominalSize: 'M20', nominalDiameter: 20, threadPitch: 2.5, widthAcrossFlatsMax: 30, widthAcrossFlatsMin: 29.16, widthAcrossCornersMin: 32.95, thicknessMax: 18, thicknessMin: 16.9},
-    {nominalSize: 'M24', nominalDiameter: 24, threadPitch: 3, widthAcrossFlatsMax: 36, widthAcrossFlatsMin: 35, widthAcrossCornersMin: 39.55, thicknessMax: 21.5, thicknessMin: 20.2},
-    {nominalSize: 'M30', nominalDiameter: 30, threadPitch: 3.5, widthAcrossFlatsMax: 46, widthAcrossFlatsMin: 45, widthAcrossCornersMin: 50.85, thicknessMax: 25.6, thicknessMin: 24.3},
-    {nominalSize: 'M36', nominalDiameter: 36, threadPitch: 4, widthAcrossFlatsMax: 55, widthAcrossFlatsMin: 53.8, widthAcrossCornersMin: 60.78, thicknessMax: 31, thicknessMin: 29.4},
-    {nominalSize: 'M42', nominalDiameter: 42, threadPitch: 4.5, widthAcrossFlatsMax: 65, widthAcrossFlatsMin: 63.1, widthAcrossCornersMin: 73.1, thicknessMax: 34, thicknessMin: 32.4},
-    {nominalSize: 'M48', nominalDiameter: 48, threadPitch: 5, widthAcrossFlatsMax: 75, widthAcrossFlatsMin: 73.1, widthAcrossCornersMin: 82.6, thicknessMax: 38, thicknessMin: 36.4},
-    {nominalSize: 'M56', nominalDiameter: 56, threadPitch: 5.5, widthAcrossFlatsMax: 85, widthAcrossFlatsMin: 82.8, widthAcrossCornersMin: 93.56, thicknessMax: 45, thicknessMin: 43.4},
-    {nominalSize: 'M64', nominalDiameter: 64, threadPitch: 6, widthAcrossFlatsMax: 95, widthAcrossFlatsMin: 92.8, widthAcrossCornersMin: 104.86, thicknessMax: 51, thicknessMin: 49.1}
+    {name: 'M1.6', d: 1.6, thread: 0.35, af: 3.2, ac: 3.41,   k: 1.3},
+    {name: 'M2',   d: 2,   thread: 0.4,  af: 4,   ac: 4.32,   k: 1.6},
+    {name: 'M2.5', d: 2.5, thread: 0.45, af: 5,   ac: 5.45,   k: 2},
+    {name: 'M3',   d: 3,   thread: 0.5,  af: 5.5, ac: 6.01,   k: 2.4},
+    {name: 'M4',   d: 4,   thread: 0.7,  af: 7,   ac: 7.66,   k: 3.2},
+    {name: 'M5',   d: 5,   thread: 0.8,  af: 8,   ac: 8.79,   k: 4.7},
+    {name: 'M6',   d: 6,   thread: 1,    af: 10,  ac: 11.05,  k: 5.2},
+    {name: 'M10',  d: 10,  thread: 1.5,  af: 16,  ac: 17.77,  k: 8.4},
+    {name: 'M12',  d: 12,  thread: 1.75, af: 18,  ac: 20.03,  k: 10.8},
+    {name: 'M14',  d: 14,  thread: 2,    af: 21,  ac: 23.35,  k: 12.8},
+    {name: 'M16',  d: 16,  thread: 2,    af: 24,  ac: 26.75,  k: 14.8},
+    {name: 'M20',  d: 20,  thread: 2.5,  af: 30,  ac: 32.95,  k: 18},
+    {name: 'M24',  d: 24,  thread: 3,    af: 36,  ac: 39.55,  k: 21.5},
+    {name: 'M30',  d: 30,  thread: 3.5,  af: 46,  ac: 50.85,  k: 25.6},
+    {name: 'M36',  d: 36,  thread: 4,    af: 55,  ac: 60.78,  k: 31},
+    {name: 'M42',  d: 42,  thread: 4.5,  af: 65,  ac: 73.1,   k: 34},
+    {name: 'M48',  d: 48,  thread: 5,    af: 75,  ac: 82.6,   k: 38},
+    {name: 'M56',  d: 56,  thread: 5.5,  af: 85,  ac: 93.56,  k: 45},
+    {name: 'M64',  d: 64,  thread: 6,    af: 95,  ac: 104.86, k: 51}
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
     metricHexNutMatrix[i].nominalDiameter = metricHexNutMatrix[i].nominalDiameter / 10;
