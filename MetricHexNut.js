@@ -177,6 +177,8 @@ function run(context) {
               var input = inputs.item(j);
               if (input.id === 'textBoxNominalDiameter') {
                 input.text = selectedItemObject.nominalDiameter + " cm";
+              } else if (input.id === 'nominalDiameter') {
+                input.value = selectedItemObject.nominalDiameter;
               } else if (input.id === 'textBoxThreadPitch') {
                 input.text = selectedItemObject.threadPitch + " cm";
               } else if (input.id === 'threadPitch') {
@@ -259,8 +261,23 @@ function run(context) {
       var fc = headExt.faces.item(0);
       var bd = fc.body;
       bd.name = this.metricHexNutName;
-      var bodySketch = sketches.add(xyPlane);
-      bodySketch.sketchCurves.sketchCircles.addByCenterRadius(center, this.nominalDiameter / 2);
+      var endFaces = headExt.endFaces;
+      var endFace = endFaces.item(0);
+      var planes = newComp.constructionPlanes;
+      var planeInput = planes.createInput();
+      var offsetVal = adsk.core.ValueInput.createByString('0 cm');
+      planeInput.setByOffset(endFace, offsetVal);
+      var offsetPlane = planes.add(planeInput);
+      var offsetSketch = sketches.add(offsetPlane);
+      var offsetSketchPoints = offsetSketch.sketchPoints;
+      var centerHole = offsetSketchPoints.add(adsk.core.Point3D.create(0, 0, 0));
+      var ptColl = adsk.core.ObjectCollection.create();
+      ptColl.add(centerHole);
+      var holes = newComp.features.holeFeatures;
+      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.nominalDiameter));
+      holeInput.setPositionBySketchPoints(ptColl);
+      holeInput.setDistanceExtent(distance);
+      var hole = holes.add(holeInput);
     };
   };
   try {
