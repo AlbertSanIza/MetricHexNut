@@ -209,6 +209,14 @@ function run(context) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
+        } else if (input.id === 'threadPitch') {
+          metricHexNut.threadPitch = input.value;
+        } else if (input.id === 'widthAcrossFlatsMax') {
+          metricHexNut.widthAcrossFlatsMax = input.value;
+        } else if (input.id === 'widthAcrossCornersMin') {
+          metricHexNut.widthAcrossCornersMin = input.value;
+        } else if (input.id === 'thicknessMax') {
+          metricHexNut.thicknessMax = input.value;
         }
       }
       metricHexNut.buildMetricHexNut();
