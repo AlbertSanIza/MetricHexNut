@@ -242,6 +242,10 @@ function run(context) {
   };
   var MetricHexNut = function() {
     this.metricHexNutName = defaultMetricHexNutName;
+    this.threadPitch = metricHexNutMatrix[0].threadPitch;
+    this.widthAcrossFlatsMax = metricHexNutMatrix[0].widthAcrossFlatsMax;
+    this.widthAcrossCornersMin = metricHexNutMatrix[0].widthAcrossCornersMin;
+    this.thicknessMax = metricHexNutMatrix[0].thicknessMax;
     this.buildMetricHexNut = function() {
     };
   };
