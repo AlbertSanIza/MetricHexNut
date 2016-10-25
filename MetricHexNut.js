@@ -4,27 +4,29 @@ function run(context) {
   "use strict";
   var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
-    {nominalSize: 'M1.6', threadPitch: 0.35, widthAcrossFlatsMax: 3.2, widthAcrossFlatsMin: 3.02, widthAcrossCornersMin: 3.41, thicknessMax: 1.3, thicknessMin: 1.05},
-    {nominalSize: 'M2', threadPitch: 0.4, widthAcrossFlatsMax: 4, widthAcrossFlatsMin: 3.82, widthAcrossCornersMin: 4.32, thicknessMax: 1.6, thicknessMin: 1.35},
-    {nominalSize: 'M2.5', threadPitch: 0.45, widthAcrossFlatsMax: 5, widthAcrossFlatsMin: 4.82, widthAcrossCornersMin: 5.45, thicknessMax: 2, thicknessMin: 1.75},
-    {nominalSize: 'M3', threadPitch: 0.5, widthAcrossFlatsMax: 5.5, widthAcrossFlatsMin: 5.32, widthAcrossCornersMin: 6.01, thicknessMax: 2.4, thicknessMin: 2.15},
-    {nominalSize: 'M4', threadPitch: 0.7, widthAcrossFlatsMax: 7, widthAcrossFlatsMin: 6.78, widthAcrossCornersMin: 7.66, thicknessMax: 3.2, thicknessMin: 2.9},
-    {nominalSize: 'M5', threadPitch: 0.8, widthAcrossFlatsMax: 8, widthAcrossFlatsMin: 7.78, widthAcrossCornersMin: 8.79, thicknessMax: 4.7, thicknessMin: 4.4},
-    {nominalSize: 'M6', threadPitch: 1, widthAcrossFlatsMax: 10, widthAcrossFlatsMin: 9.78, widthAcrossCornersMin: 11.05, thicknessMax: 5.2, thicknessMin: 4.9},
-    {nominalSize: 'M10', threadPitch: 1.5, widthAcrossFlatsMax: 16, widthAcrossFlatsMin: 15.73, widthAcrossCornersMin: 17.77, thicknessMax: 8.4, thicknessMin: 8.04},
-    {nominalSize: 'M12', threadPitch: 1.75, widthAcrossFlatsMax: 18, widthAcrossFlatsMin: 17.73, widthAcrossCornersMin: 20.03, thicknessMax: 10.8, thicknessMin: 10.37},
-    {nominalSize: 'M14', threadPitch: 2, widthAcrossFlatsMax: 21, widthAcrossFlatsMin: 20.67, widthAcrossCornersMin: 23.35, thicknessMax: 12.8, thicknessMin: 12.1},
-    {nominalSize: 'M16', threadPitch: 2, widthAcrossFlatsMax: 24, widthAcrossFlatsMin: 23.67, widthAcrossCornersMin: 26.75, thicknessMax: 14.8, thicknessMin: 14.1},
-    {nominalSize: 'M20', threadPitch: 2.5, widthAcrossFlatsMax: 30, widthAcrossFlatsMin: 29.16, widthAcrossCornersMin: 32.95, thicknessMax: 18, thicknessMin: 16.9},
-    {nominalSize: 'M24', threadPitch: 3, widthAcrossFlatsMax: 36, widthAcrossFlatsMin: 35, widthAcrossCornersMin: 39.55, thicknessMax: 21.5, thicknessMin: 20.2},
-    {nominalSize: 'M30', threadPitch: 3.5, widthAcrossFlatsMax: 46, widthAcrossFlatsMin: 45, widthAcrossCornersMin: 50.85, thicknessMax: 25.6, thicknessMin: 24.3},
-    {nominalSize: 'M36', threadPitch: 4, widthAcrossFlatsMax: 55, widthAcrossFlatsMin: 53.8, widthAcrossCornersMin: 60.78, thicknessMax: 31, thicknessMin: 29.4},
-    {nominalSize: 'M42', threadPitch: 4.5, widthAcrossFlatsMax: 65, widthAcrossFlatsMin: 63.1, widthAcrossCornersMin: 73.1, thicknessMax: 34, thicknessMin: 32.4},
-    {nominalSize: 'M48', threadPitch: 5, widthAcrossFlatsMax: 75, widthAcrossFlatsMin: 73.1, widthAcrossCornersMin: 82.6, thicknessMax: 38, thicknessMin: 36.4},
-    {nominalSize: 'M56', threadPitch: 5.5, widthAcrossFlatsMax: 85, widthAcrossFlatsMin: 82.8, widthAcrossCornersMin: 93.56, thicknessMax: 45, thicknessMin: 43.4},
-    {nominalSize: 'M64', threadPitch: 6, widthAcrossFlatsMax: 95, widthAcrossFlatsMin: 92.8, widthAcrossCornersMin: 104.86, thicknessMax: 51, thicknessMin: 49.1}
+    {nominalSize: 'M1.6', nominalDiameter: 1.6, threadPitch: 0.35, widthAcrossFlatsMax: 3.2, widthAcrossFlatsMin: 3.02, widthAcrossCornersMin: 3.41, thicknessMax: 1.3, thicknessMin: 1.05},
+    {nominalSize: 'M2', nominalDiameter: 2, threadPitch: 0.4, widthAcrossFlatsMax: 4, widthAcrossFlatsMin: 3.82, widthAcrossCornersMin: 4.32, thicknessMax: 1.6, thicknessMin: 1.35},
+    {nominalSize: 'M2.5', nominalDiameter: 2.5, threadPitch: 0.45, widthAcrossFlatsMax: 5, widthAcrossFlatsMin: 4.82, widthAcrossCornersMin: 5.45, thicknessMax: 2, thicknessMin: 1.75},
+    {nominalSize: 'M3', nominalDiameter: 3, threadPitch: 0.5, widthAcrossFlatsMax: 5.5, widthAcrossFlatsMin: 5.32, widthAcrossCornersMin: 6.01, thicknessMax: 2.4, thicknessMin: 2.15},
+    {nominalSize: 'M4', nominalDiameter: 4, threadPitch: 0.7, widthAcrossFlatsMax: 7, widthAcrossFlatsMin: 6.78, widthAcrossCornersMin: 7.66, thicknessMax: 3.2, thicknessMin: 2.9},
+    {nominalSize: 'M5', nominalDiameter: 5, threadPitch: 0.8, widthAcrossFlatsMax: 8, widthAcrossFlatsMin: 7.78, widthAcrossCornersMin: 8.79, thicknessMax: 4.7, thicknessMin: 4.4},
+    {nominalSize: 'M6', nominalDiameter: 6, threadPitch: 1, widthAcrossFlatsMax: 10, widthAcrossFlatsMin: 9.78, widthAcrossCornersMin: 11.05, thicknessMax: 5.2, thicknessMin: 4.9},
+    {nominalSize: 'M10', nominalDiameter: 10, threadPitch: 1.5, widthAcrossFlatsMax: 16, widthAcrossFlatsMin: 15.73, widthAcrossCornersMin: 17.77, thicknessMax: 8.4, thicknessMin: 8.04},
+    {nominalSize: 'M12', nominalDiameter: 12, threadPitch: 1.75, widthAcrossFlatsMax: 18, widthAcrossFlatsMin: 17.73, widthAcrossCornersMin: 20.03, thicknessMax: 10.8, thicknessMin: 10.37},
+    {nominalSize: 'M14', nominalDiameter: 14, threadPitch: 2, widthAcrossFlatsMax: 21, widthAcrossFlatsMin: 20.67, widthAcrossCornersMin: 23.35, thicknessMax: 12.8, thicknessMin: 12.1},
+    {nominalSize: 'M16', nominalDiameter: 16, threadPitch: 2, widthAcrossFlatsMax: 24, widthAcrossFlatsMin: 23.67, widthAcrossCornersMin: 26.75, thicknessMax: 14.8, thicknessMin: 14.1},
+    {nominalSize: 'M20', nominalDiameter: 20, threadPitch: 2.5, widthAcrossFlatsMax: 30, widthAcrossFlatsMin: 29.16, widthAcrossCornersMin: 32.95, thicknessMax: 18, thicknessMin: 16.9},
+    {nominalSize: 'M24', nominalDiameter: 24, threadPitch: 3, widthAcrossFlatsMax: 36, widthAcrossFlatsMin: 35, widthAcrossCornersMin: 39.55, thicknessMax: 21.5, thicknessMin: 20.2},
+    {nominalSize: 'M30', nominalDiameter: 30, threadPitch: 3.5, widthAcrossFlatsMax: 46, widthAcrossFlatsMin: 45, widthAcrossCornersMin: 50.85, thicknessMax: 25.6, thicknessMin: 24.3},
+    {nominalSize: 'M36', nominalDiameter: 36, threadPitch: 4, widthAcrossFlatsMax: 55, widthAcrossFlatsMin: 53.8, widthAcrossCornersMin: 60.78, thicknessMax: 31, thicknessMin: 29.4},
+    {nominalSize: 'M42', nominalDiameter: 42, threadPitch: 4.5, widthAcrossFlatsMax: 65, widthAcrossFlatsMin: 63.1, widthAcrossCornersMin: 73.1, thicknessMax: 34, thicknessMin: 32.4},
+    {nominalSize: 'M48', nominalDiameter: 48, threadPitch: 5, widthAcrossFlatsMax: 75, widthAcrossFlatsMin: 73.1, widthAcrossCornersMin: 82.6, thicknessMax: 38, thicknessMin: 36.4},
+    {nominalSize: 'M56', nominalDiameter: 56, threadPitch: 5.5, widthAcrossFlatsMax: 85, widthAcrossFlatsMin: 82.8, widthAcrossCornersMin: 93.56, thicknessMax: 45, thicknessMin: 43.4},
+    {nominalSize: 'M64', nominalDiameter: 64, threadPitch: 6, widthAcrossFlatsMax: 95, widthAcrossFlatsMin: 92.8, widthAcrossCornersMin: 104.86, thicknessMax: 51, thicknessMin: 49.1}
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
+    metricHexNutMatrix[i].nominalDiameter = metricHexNutMatrix[i].nominalDiameter / 10;
+    metricHexNutMatrix[i].nominalDiameter = metricHexNutMatrix[i].nominalDiameter.toFixed(3);
     metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch / 10;
     metricHexNutMatrix[i].threadPitch = metricHexNutMatrix[i].threadPitch.toFixed(3);
     metricHexNutMatrix[i].widthAcrossFlatsMax = metricHexNutMatrix[i].widthAcrossFlatsMax / 10;
@@ -82,6 +84,9 @@ function run(context) {
         initNominalSize.listItems.add(metricHexNutMatrix[i].nominalSize, false, '');
       }
       initNominalSize.listItems.add('Custom', false, '');
+      var initNominalDiameter = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].nominalDiameter);
+      inputs.addValueInput('nominalDiameter', 'Nominal Diameter','cm',initNominalDiameter);
+      inputs.addTextBoxCommandInput('textBoxNominalDiameter', 'Nominal Diameter', metricHexNutMatrix[0].nominalDiameter + " cm", 1, true);
       var initThreadPitch = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].threadPitch);
       inputs.addValueInput('threadPitch', 'Thread Pitch','cm',initThreadPitch);
       inputs.addTextBoxCommandInput('textBoxThreadPitch', 'Thread Pitch', metricHexNutMatrix[0].threadPitch + " cm", 1, true);
@@ -97,12 +102,14 @@ function run(context) {
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         switch (input.id) {
+          case 'textBoxNominalDiameter':
           case 'textBoxThreadPitch':
           case 'textBoxWidthAcrossFlatsMax':
           case 'textBoxWidthAcrossCornersMin':
           case 'textBoxThicknessMax':
           input.isVisible = true;
           break;
+          case 'nominalDiameter':
           case 'threadPitch':
           case 'widthAcrossFlatsMax':
           case 'widthAcrossCornersMin':
@@ -132,6 +139,7 @@ function run(context) {
               for (var j = 0; j < inputs.count; j++) {
                 var input2 = inputs.item(j);
                 switch (input2.id) {
+                  case 'textBoxNominalDiameter':
                   case 'textBoxThreadPitch':
                   case 'textBoxWidthAcrossFlatsMax':
                   case 'textBoxWidthAcrossCornersMin':
@@ -142,6 +150,7 @@ function run(context) {
                     input2.isVisible = true;
                   }
                   break;
+                  case 'nominalDiameter':
                   case 'threadPitch':
                   case 'widthAcrossFlatsMax':
                   case 'widthAcrossCornersMin':
@@ -166,7 +175,9 @@ function run(context) {
             selectedItemObject = metricHexNutMatrix[i];
             for (var j = 0; j < inputs.count; j++) {
               var input = inputs.item(j);
-              if (input.id === 'textBoxThreadPitch') {
+              if (input.id === 'textBoxNominalDiameter') {
+                input.text = selectedItemObject.nominalDiameter + " cm";
+              } else if (input.id === 'textBoxThreadPitch') {
                 input.text = selectedItemObject.threadPitch + " cm";
               } else if (input.id === 'threadPitch') {
                 input.value = selectedItemObject.threadPitch;
@@ -193,6 +204,8 @@ function run(context) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
+        } else if (input.id === 'nominalDiameter') {
+          metricHexNut.nominalDiameter = input.value;
         } else if (input.id === 'threadPitch') {
           metricHexNut.threadPitch = input.value;
         } else if (input.id === 'widthAcrossFlatsMax') {
@@ -212,6 +225,7 @@ function run(context) {
   };
   var MetricHexNut = function() {
     this.metricHexNutName = defaultMetricHexNutName;
+    this.nominalDiameter = metricHexNutMatrix[0].nominalDiameter;
     this.threadPitch = metricHexNutMatrix[0].threadPitch;
     this.widthAcrossFlatsMax = metricHexNutMatrix[0].widthAcrossFlatsMax;
     this.widthAcrossCornersMin = metricHexNutMatrix[0].widthAcrossCornersMin;
@@ -245,6 +259,8 @@ function run(context) {
       var fc = headExt.faces.item(0);
       var bd = fc.body;
       bd.name = this.metricHexNutName;
+      var bodySketch = sketches.add(xyPlane);
+      bodySketch.sketchCurves.sketchCircles.addByCenterRadius(center, this.nominalDiameter / 2);
     };
   };
   try {
