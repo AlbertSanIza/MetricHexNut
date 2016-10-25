@@ -236,6 +236,15 @@ function run(context) {
       for(i = 0; i < 6; i++) {
         sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
       }
+      var extrudes = newComp.features.extrudeFeatures;
+      var prof = sketch.profiles.item(0);
+      var extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
+      var distance = adsk.core.ValueInput.createByReal(this.thicknessMax);
+      extInput.setDistanceExtent(false, distance);
+      var headExt = extrudes.add(extInput);
+      var fc = headExt.faces.item(0);
+      var bd = fc.body;
+      bd.name = this.metricHexNutName;
     };
   };
   try {
