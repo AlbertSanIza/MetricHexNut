@@ -4,25 +4,25 @@ function run(context) {
   "use strict";
   var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
-    {name: 'M1.6', d: 1.6, thread: 0.35, af: 3.2, ac: 3.41,   k: 1.3},
-    {name: 'M2',   d: 2,   thread: 0.4,  af: 4,   ac: 4.32,   k: 1.6},
-    {name: 'M2.5', d: 2.5, thread: 0.45, af: 5,   ac: 5.45,   k: 2},
-    {name: 'M3',   d: 3,   thread: 0.5,  af: 5.5, ac: 6.01,   k: 2.4},
-    {name: 'M4',   d: 4,   thread: 0.7,  af: 7,   ac: 7.66,   k: 3.2},
-    {name: 'M5',   d: 5,   thread: 0.8,  af: 8,   ac: 8.79,   k: 4.7},
-    {name: 'M6',   d: 6,   thread: 1,    af: 10,  ac: 11.05,  k: 5.2},
-    {name: 'M10',  d: 10,  thread: 1.5,  af: 16,  ac: 17.77,  k: 8.4},
-    {name: 'M12',  d: 12,  thread: 1.75, af: 18,  ac: 20.03,  k: 10.8},
-    {name: 'M14',  d: 14,  thread: 2,    af: 21,  ac: 23.35,  k: 12.8},
-    {name: 'M16',  d: 16,  thread: 2,    af: 24,  ac: 26.75,  k: 14.8},
-    {name: 'M20',  d: 20,  thread: 2.5,  af: 30,  ac: 32.95,  k: 18},
-    {name: 'M24',  d: 24,  thread: 3,    af: 36,  ac: 39.55,  k: 21.5},
-    {name: 'M30',  d: 30,  thread: 3.5,  af: 46,  ac: 50.85,  k: 25.6},
-    {name: 'M36',  d: 36,  thread: 4,    af: 55,  ac: 60.78,  k: 31},
-    {name: 'M42',  d: 42,  thread: 4.5,  af: 65,  ac: 73.1,   k: 34},
-    {name: 'M48',  d: 48,  thread: 5,    af: 75,  ac: 82.6,   k: 38},
-    {name: 'M56',  d: 56,  thread: 5.5,  af: 85,  ac: 93.56,  k: 45},
-    {name: 'M64',  d: 64,  thread: 6,    af: 95,  ac: 104.86, k: 51}
+    {nominalSize: 'M1.6', d: 1.6, thread: 0.35, af: 3.2, ac: 3.41,   k: 1.3},
+    {nominalSize: 'M2',   d: 2,   thread: 0.4,  af: 4,   ac: 4.32,   k: 1.6},
+    {nominalSize: 'M2.5', d: 2.5, thread: 0.45, af: 5,   ac: 5.45,   k: 2},
+    {nominalSize: 'M3',   d: 3,   thread: 0.5,  af: 5.5, ac: 6.01,   k: 2.4},
+    {nominalSize: 'M4',   d: 4,   thread: 0.7,  af: 7,   ac: 7.66,   k: 3.2},
+    {nominalSize: 'M5',   d: 5,   thread: 0.8,  af: 8,   ac: 8.79,   k: 4.7},
+    {nominalSize: 'M6',   d: 6,   thread: 1,    af: 10,  ac: 11.05,  k: 5.2},
+    {nominalSize: 'M10',  d: 10,  thread: 1.5,  af: 16,  ac: 17.77,  k: 8.4},
+    {nominalSize: 'M12',  d: 12,  thread: 1.75, af: 18,  ac: 20.03,  k: 10.8},
+    {nominalSize: 'M14',  d: 14,  thread: 2,    af: 21,  ac: 23.35,  k: 12.8},
+    {nominalSize: 'M16',  d: 16,  thread: 2,    af: 24,  ac: 26.75,  k: 14.8},
+    {nominalSize: 'M20',  d: 20,  thread: 2.5,  af: 30,  ac: 32.95,  k: 18},
+    {nominalSize: 'M24',  d: 24,  thread: 3,    af: 36,  ac: 39.55,  k: 21.5},
+    {nominalSize: 'M30',  d: 30,  thread: 3.5,  af: 46,  ac: 50.85,  k: 25.6},
+    {nominalSize: 'M36',  d: 36,  thread: 4,    af: 55,  ac: 60.78,  k: 31},
+    {nominalSize: 'M42',  d: 42,  thread: 4.5,  af: 65,  ac: 73.1,   k: 34},
+    {nominalSize: 'M48',  d: 48,  thread: 5,    af: 75,  ac: 82.6,   k: 38},
+    {nominalSize: 'M56',  d: 56,  thread: 5.5,  af: 85,  ac: 93.56,  k: 45},
+    {nominalSize: 'M64',  d: 64,  thread: 6,    af: 95,  ac: 104.86, k: 51}
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
     metricHexNutMatrix[i].d = metricHexNutMatrix[i].d / 10;
