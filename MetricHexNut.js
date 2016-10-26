@@ -218,6 +218,13 @@ function run(context) {
           customObjectNow.ac = (2 * customObjectNow.af) / Math.sqrt(3);
         }
       } else if (customObjectNow.ac != customObjectBase.ac) {
+        var af = (Math.sqrt(3) * customObjectNow.ac) / 2;
+        if (af <= customObjectBase.d) {
+          ui.messageBox("(ac) value not allowed!");
+          isGood = false;
+        } else {
+          customObjectNow.af = af;
+        }
       } else if (customObjectNow.k != customObjectBase.k) {
         if (customObjectNow.af < 0.4) {
           ui.messageBox("(k) value not allowed!");
