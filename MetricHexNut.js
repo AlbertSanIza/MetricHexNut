@@ -187,21 +187,46 @@ function run(context) {
           }
         }
       }
+
       lastSelectedItem = selectedItem;
+      var isGood = true;
+      var customObjectNow = new Object();
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
-          metricHexNut.metricHexNutName = input.value;
+          customObjectNow.metricHexNutName = input.value;
         } else if (input.id === 'D') {
-          metricHexNut.d = input.value;
+          customObjectNow.d = input.value;
         } else if (input.id === 'Af') {
-          metricHexNut.af = input.value;
+          customObjectNow.af = input.value;
         } else if (input.id === 'Ac') {
-          metricHexNut.ac = input.value;
+          customObjectNow.ac = input.value;
         } else if (input.id === 'K') {
-          metricHexNut.k = input.value;
+          customObjectNow.k = input.value;
         }
       }
+      if (customObjectNow.d != customObjectBase.d) {
+        if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
+          ui.messageBox("(d) value not allowed!");
+          isGood = false;
+        }
+      } else if (customObjectNow.af != customObjectBase.af) {
+        if (customObjectNow.af >= customObjectNow.d) {
+          ui.messageBox("(af) value not allowed!");
+          isGood = false;
+        }
+      } else if (customObjectNow.ac != customObjectBase.ac) {
+      } else if (customObjectNow.k != customObjectBase.k) {
+        if (customObjectNow.af <= 0) {
+          ui.messageBox("(k) value not allowed!");
+          isGood = false;
+        }
+      }
+      metricHexNut.metricHexNutName = customObjectNow.metricHexNutName;
+      metricHexNut.d = isGood ? customObjectNow.d : customObjectBase.d;
+      metricHexNut.af = isGood ? customObjectNow.af : customObjectBase.af;
+      metricHexNut.ac = isGood ? customObjectNow.ac : customObjectBase.ac;
+      metricHexNut.k = isGood ? customObjectNow.k : customObjectBase.k;
       metricHexNut.buildMetricHexNut();
       for (var i = 0; i < inputs.count; i++) {
         if (input.id === 'textBoxThread') {
