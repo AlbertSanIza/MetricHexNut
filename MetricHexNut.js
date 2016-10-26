@@ -26,16 +26,16 @@ function run(context) {
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
     metricHexNutMatrix[i].d = metricHexNutMatrix[i].d / 10;
-    metricHexNutMatrix[i].d = metricHexNutMatrix[i].d.toFixed(3);
+    metricHexNutMatrix[i].d = metricHexNutMatrix[i].d.toFixed(4);
     metricHexNutMatrix[i].ac = (2 * metricHexNutMatrix[i].af) / Math.sqrt(3);
     metricHexNutMatrix[i].af = metricHexNutMatrix[i].af / 10;
-    metricHexNutMatrix[i].af = metricHexNutMatrix[i].af.toFixed(3);
+    metricHexNutMatrix[i].af = metricHexNutMatrix[i].af.toFixed(4);
     metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac / 10;
-    metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac.toFixed(3);
+    metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac.toFixed(4);
     metricHexNutMatrix[i].k = metricHexNutMatrix[i].k / 10;
-    metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(3);
+    metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(4);
     metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread / 10;
-    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread.toFixed(3);
+    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread.toFixed(4);
   }
   var lastSelectedItem = 'M1.6';
   var app = adsk.core.Application.get(), ui;
