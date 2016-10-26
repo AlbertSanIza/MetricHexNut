@@ -173,13 +173,33 @@ function run(context) {
         }
       }
       lastSelectedItem = selectedItem;
+      var toSave = new Object();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'D') {
+          toSave.d = input.value;
+        } else if (input.id === 'Af') {
+          toSave.af = input.value;
+        } else if (input.id === 'Ac') {
+          toSave.ac = input.value;
+        } else if (input.id === 'K') {
+          toSave.k = input.value;
+        }
+      }
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
         } else if (input.id === 'D') {
-          metricHexNut.d = input.value;
+          if (input.value <= 0 || input.value >= toSave.af) {
+            ui.messageBox("Invalid (d) value");
+          } else {
+            metricHexNut.d = input.value;
+          }
         } else if (input.id === 'Af') {
+          if () {
+
+          }
           metricHexNut.af = input.value;
         } else if (input.id === 'Ac') {
           metricHexNut.ac = input.value;
