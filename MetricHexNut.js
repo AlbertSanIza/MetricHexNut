@@ -234,6 +234,7 @@ function run(context) {
       for(i = 0; i < 6; i++) {
         sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
       }
+      /*
       var extrudes = newComp.features.extrudeFeatures;
       var prof = sketch.profiles.item(0);
       var extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
@@ -260,6 +261,7 @@ function run(context) {
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       var hole = holes.add(holeInput);
+      */
     };
   };
   try {
