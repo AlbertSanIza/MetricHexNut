@@ -134,22 +134,14 @@ function run(context) {
                   case 'textBoxAc':
                   case 'textBoxK':
                   case 'textBoxThread':
-                  if (selectedItem == 'Custom') {
-                    input2.isVisible = false;
-                  } else {
-                    input2.isVisible = true;
-                  }
+                  input2.isVisible = selectedItem == 'Custom' ? false : true;
                   break;
                   case 'D':
                   case 'Af':
                   case 'Ac':
                   case 'K':
                   case 'Thread':
-                  if (selectedItem == 'Custom') {
-                    input2.isVisible = true;
-                  } else {
-                    input2.isVisible = false;
-                  }
+                  input2.isVisible = selectedItem == 'Custom' ? true : false;
                   break;
                 }
               }
