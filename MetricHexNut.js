@@ -238,6 +238,7 @@ function run(context) {
       metricHexNut.k = isGood ? customObjectNow.k : customObjectBase.k;
       metricHexNut.buildMetricHexNut();
       for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
         if (input.id === 'textBoxThread') {
           input.text = metricHexNut.thread;
           break;
