@@ -235,16 +235,16 @@ function run(context) {
       for(i = 0; i < 6; i++) {
         sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
       }
-      /*
-      var extrudes = newComp.features.extrudeFeatures;
-      var prof = sketch.profiles.item(0);
-      var extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
+      var extrudedBody = newComp.features.extrudeFeatures;
+      var profile = sketch.profiles.item(0);
+      var extInput = extrudedBody.createInput(profile, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
       var distance = adsk.core.ValueInput.createByReal(this.k);
       extInput.setDistanceExtent(false, distance);
-      var headExt = extrudes.add(extInput);
+      var headExt = extrudedBody.add(extInput);
       var fc = headExt.faces.item(0);
       var bd = fc.body;
       bd.name = this.metricHexNutName;
+      /*
       var endFaces = headExt.endFaces;
       var endFace = endFaces.item(0);
       var planes = newComp.constructionPlanes;
