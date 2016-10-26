@@ -34,8 +34,6 @@ function run(context) {
     metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac.toFixed(4);
     metricHexNutMatrix[i].k = metricHexNutMatrix[i].k / 10;
     metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(4);
-    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread / 10;
-    metricHexNutMatrix[i].thread = metricHexNutMatrix[i].thread.toFixed(4);
   }
   var lastSelectedItem = 'M1.6';
   var app = adsk.core.Application.get(), ui;
@@ -94,9 +92,7 @@ function run(context) {
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
       inputs.addTextBoxCommandInput('textBoxK', '(k) Thickness', metricHexNutMatrix[0].k + " cm", 1, true);
-      var initThread = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].thread);
-      inputs.addValueInput('Thread', 'Thread Pitch', 'cm', initThread);
-      inputs.addTextBoxCommandInput('textBoxThread', 'Thread Pitch', metricHexNutMatrix[0].thread + " cm", 1, true);
+      inputs.addTextBoxCommandInput('textBoxThread', 'Thread Pitch', "", 1, true);
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         switch (input.id) {
@@ -104,7 +100,6 @@ function run(context) {
           case 'Af':
           case 'Ac':
           case 'K':
-          case 'Thread':
           input.isVisible = false;
           break;
         }
@@ -134,14 +129,12 @@ function run(context) {
                   case 'textBoxAf':
                   case 'textBoxAc':
                   case 'textBoxK':
-                  case 'textBoxThread':
                   input2.isVisible = selectedItem == 'Custom' ? false : true;
                   break;
                   case 'D':
                   case 'Af':
                   case 'Ac':
                   case 'K':
-                  case 'Thread':
                   input2.isVisible = selectedItem == 'Custom' ? true : false;
                   break;
                 }
@@ -174,10 +167,6 @@ function run(context) {
                 input.text = selectedItemObject.k + " cm";
               } else if (input.id === 'K') {
                 input.value = selectedItemObject.k;
-              } else if (input.id === 'textBoxThread') {
-                input.text = selectedItemObject.thread + " cm";
-              } else if (input.id === 'Thread') {
-                input.value = selectedItemObject.thread;
               }
             }
             break;
@@ -197,11 +186,15 @@ function run(context) {
           metricHexNut.ac = input.value;
         } else if (input.id === 'K') {
           metricHexNut.k = input.value;
-        } else if (input.id === 'Thread') {
-          metricHexNut.thread = input.value;
         }
       }
       metricHexNut.buildMetricHexNut();
+      for (var i = 0; i < inputs.count; i++) {
+        if (input.id === 'textBoxThread') {
+          input.text = metricHexNut.thread;
+          break;
+        }
+      }
       args.isValidResult = true;
     }
     catch (e) {
@@ -214,7 +207,7 @@ function run(context) {
     this.af = metricHexNutMatrix[0].af;
     this.ac = metricHexNutMatrix[0].ac;
     this.k = metricHexNutMatrix[0].k;
-    this.thread = metricHexNutMatrix[0].thread;
+    this.thread;
     this.buildMetricHexNut = function() {
       createNewComponent();
       if (!newComp) {
@@ -268,6 +261,7 @@ function run(context) {
       var threadClass = {};
       var isOk = threadDataQuery.recommendThreadData(this.d, true, defaultThreadType, designate, threadClass);
       if (isOk) {
+        this.thread = designate.value;
         var sideFace = hole.sideFaces.item(0);
         var faces = adsk.core.ObjectCollection.create();
         faces.add(sideFace);
