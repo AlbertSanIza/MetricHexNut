@@ -81,36 +81,29 @@ function run(context) {
         initNominalSize.listItems.add(metricHexNutMatrix[i].nominalSize, false, '');
       }
       initNominalSize.listItems.add('Custom', false, '');
-      var initNominalDiameter = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].nominalDiameter);
-      inputs.addValueInput('nominalDiameter', 'Nominal Diameter','cm',initNominalDiameter);
-      inputs.addTextBoxCommandInput('textBoxNominalDiameter', 'Nominal Diameter', metricHexNutMatrix[0].nominalDiameter + " cm", 1, true);
-      var initThreadPitch = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].threadPitch);
-      inputs.addValueInput('threadPitch', 'Thread Pitch','cm',initThreadPitch);
-      inputs.addTextBoxCommandInput('textBoxThreadPitch', 'Thread Pitch', metricHexNutMatrix[0].threadPitch + " cm", 1, true);
-      var initWidthAcrossFlatsMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossFlatsMax);
-      inputs.addValueInput('widthAcrossFlatsMax', 'Width Across Flats','cm',initWidthAcrossFlatsMax);
-      inputs.addTextBoxCommandInput('textBoxWidthAcrossFlatsMax', 'Width Across Flats', metricHexNutMatrix[0].widthAcrossFlatsMax + " cm", 1, true);
-      var initWidthAcrossCornersMin = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].widthAcrossCornersMin);
-      inputs.addValueInput('widthAcrossCornersMin', 'Width Across Corners','cm',initWidthAcrossCornersMin);
-      inputs.addTextBoxCommandInput('textBoxWidthAcrossCornersMin', 'Width Across Corners', metricHexNutMatrix[0].widthAcrossCornersMin + " cm", 1, true);
-      var initThicknessMax = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].thicknessMax);
-      inputs.addValueInput('thicknessMax', 'Thickness','cm',initThicknessMax);
-      inputs.addTextBoxCommandInput('textBoxThicknessMax', 'Thickness', metricHexNutMatrix[0].thicknessMax + " cm", 1, true);
+      var initD = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].d);
+      inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
+      inputs.addTextBoxCommandInput('textBoxD', '(d) Diameter', metricHexNutMatrix[0].d + " cm", 1, true);
+      var initAf = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].af);
+      inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
+      inputs.addTextBoxCommandInput('textBoxAf', '(af) Width Across Flats', metricHexNutMatrix[0].af + " cm", 1, true);
+      var initWidthAc = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].ac);
+      inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
+      inputs.addTextBoxCommandInput('textBoxAc', '(ac) Width Across Corners', metricHexNutMatrix[0].ac + " cm", 1, true);
+      var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
+      inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
+      inputs.addTextBoxCommandInput('textBoxK', '(k) Thickness', metricHexNutMatrix[0].k + " cm", 1, true);
+      var initThread = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].thread);
+      inputs.addValueInput('Thread', 'Thread Pitch', 'cm', initThread);
+      inputs.addTextBoxCommandInput('textBoxThread', 'Thread Pitch', metricHexNutMatrix[0].thread + " cm", 1, true);
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         switch (input.id) {
-          case 'textBoxNominalDiameter':
-          case 'textBoxThreadPitch':
-          case 'textBoxWidthAcrossFlatsMax':
-          case 'textBoxWidthAcrossCornersMin':
-          case 'textBoxThicknessMax':
-          input.isVisible = true;
-          break;
-          case 'nominalDiameter':
-          case 'threadPitch':
-          case 'widthAcrossFlatsMax':
-          case 'widthAcrossCornersMin':
-          case 'thicknessMax':
+          case 'D':
+          case 'Af':
+          case 'Ac':
+          case 'K':
+          case 'Thread':
           input.isVisible = false;
           break;
         }
@@ -136,22 +129,22 @@ function run(context) {
               for (var j = 0; j < inputs.count; j++) {
                 var input2 = inputs.item(j);
                 switch (input2.id) {
-                  case 'textBoxNominalDiameter':
-                  case 'textBoxThreadPitch':
-                  case 'textBoxWidthAcrossFlatsMax':
-                  case 'textBoxWidthAcrossCornersMin':
-                  case 'textBoxThicknessMax':
+                  case 'textBoxD':
+                  case 'textBoxAf':
+                  case 'textBoxAc':
+                  case 'textBoxK':
+                  case 'textBoxThread':
                   if (selectedItem == 'Custom') {
                     input2.isVisible = false;
                   } else {
                     input2.isVisible = true;
                   }
                   break;
-                  case 'nominalDiameter':
-                  case 'threadPitch':
-                  case 'widthAcrossFlatsMax':
-                  case 'widthAcrossCornersMin':
-                  case 'thicknessMax':
+                  case 'D':
+                  case 'Af':
+                  case 'Ac':
+                  case 'K':
+                  case 'Thread':
                   if (selectedItem == 'Custom') {
                     input2.isVisible = true;
                   } else {
@@ -172,26 +165,26 @@ function run(context) {
             selectedItemObject = metricHexNutMatrix[i];
             for (var j = 0; j < inputs.count; j++) {
               var input = inputs.item(j);
-              if (input.id === 'textBoxNominalDiameter') {
-                input.text = selectedItemObject.nominalDiameter + " cm";
-              } else if (input.id === 'nominalDiameter') {
-                input.value = selectedItemObject.nominalDiameter;
-              } else if (input.id === 'textBoxThreadPitch') {
-                input.text = selectedItemObject.threadPitch + " cm";
-              } else if (input.id === 'threadPitch') {
-                input.value = selectedItemObject.threadPitch;
-              } else if (input.id === 'textBoxWidthAcrossFlatsMax') {
-                input.text = selectedItemObject.widthAcrossFlatsMax + " cm";
-              } else if (input.id === 'widthAcrossFlatsMax') {
-                input.value = selectedItemObject.widthAcrossFlatsMax;
-              } else if (input.id === 'textBoxWidthAcrossCornersMin') {
-                input.text = selectedItemObject.widthAcrossCornersMin + " cm";
-              } else if (input.id === 'widthAcrossCornersMin') {
-                input.value = selectedItemObject.widthAcrossCornersMin;
-              } else if (input.id === 'textBoxThicknessMax') {
-                input.text = selectedItemObject.thicknessMax + " cm";
-              } else if (input.id === 'thicknessMax') {
-                input.value = selectedItemObject.thicknessMax;
+              if (input.id === 'textBoxD') {
+                input.text = selectedItemObject.d + " cm";
+              } else if (input.id === 'D') {
+                input.value = selectedItemObject.d;
+              } else if (input.id === 'textBoxAf') {
+                input.text = selectedItemObject.af + " cm";
+              } else if (input.id === 'Af') {
+                input.value = selectedItemObject.af;
+              } else if (input.id === 'textBoxAc') {
+                input.text = selectedItemObject.ac + " cm";
+              } else if (input.id === 'Ac') {
+                input.value = selectedItemObject.ac;
+              } else if (input.id === 'textBoxK') {
+                input.text = selectedItemObject.k + " cm";
+              } else if (input.id === 'K') {
+                input.value = selectedItemObject.k;
+              } else if (input.id === 'textBoxThread') {
+                input.text = selectedItemObject.thread + " cm";
+              } else if (input.id === 'Thread') {
+                input.value = selectedItemObject.thread;
               }
             }
             break;
@@ -203,16 +196,16 @@ function run(context) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
-        } else if (input.id === 'nominalDiameter') {
-          metricHexNut.nominalDiameter = input.value;
-        } else if (input.id === 'threadPitch') {
-          metricHexNut.threadPitch = input.value;
-        } else if (input.id === 'widthAcrossFlatsMax') {
-          metricHexNut.widthAcrossFlatsMax = input.value;
-        } else if (input.id === 'widthAcrossCornersMin') {
-          metricHexNut.widthAcrossCornersMin = input.value;
-        } else if (input.id === 'thicknessMax') {
-          metricHexNut.thicknessMax = input.value;
+        } else if (input.id === 'D') {
+          metricHexNut.d = input.value;
+        } else if (input.id === 'Af') {
+          metricHexNut.af = input.value;
+        } else if (input.id === 'Ac') {
+          metricHexNut.ac = input.value;
+        } else if (input.id === 'K') {
+          metricHexNut.k = input.value;
+        } else if (input.id === 'Thread') {
+          metricHexNut.thread = input.value;
         }
       }
       metricHexNut.buildMetricHexNut();
@@ -224,11 +217,11 @@ function run(context) {
   };
   var MetricHexNut = function() {
     this.metricHexNutName = defaultMetricHexNutName;
-    this.nominalDiameter = metricHexNutMatrix[0].nominalDiameter;
-    this.threadPitch = metricHexNutMatrix[0].threadPitch;
-    this.widthAcrossFlatsMax = metricHexNutMatrix[0].widthAcrossFlatsMax;
-    this.widthAcrossCornersMin = metricHexNutMatrix[0].widthAcrossCornersMin;
-    this.thicknessMax = metricHexNutMatrix[0].thicknessMax;
+    this.d = metricHexNutMatrix[0].d;
+    this.af = metricHexNutMatrix[0].af;
+    this.ac = metricHexNutMatrix[0].ac;
+    this.k = metricHexNutMatrix[0].k;
+    this.thread = metricHexNutMatrix[0].thread;
     this.buildMetricHexNut = function() {
       createNewComponent();
       if (!newComp) {
@@ -243,7 +236,7 @@ function run(context) {
       var center = adsk.core.Point3D.create(0, 0, 0);
       var vertices =[];
       for (var i = 0; i < 6; i++) {
-        var vertex = adsk.core.Point3D.create(center.x + (this.widthAcrossCornersMin / 2) * Math.cos(Math.PI * i / 3), center.y + (this.widthAcrossCornersMin / 2) * Math.sin(Math.PI * i / 3), 0);
+        var vertex = adsk.core.Point3D.create(center.x + (this.ac / 2) * Math.cos(Math.PI * i / 3), center.y + (this.ac / 2) * Math.sin(Math.PI * i / 3), 0);
         vertices.push(vertex);
       }
       for(i = 0; i < 6; i++) {
@@ -252,7 +245,7 @@ function run(context) {
       var extrudes = newComp.features.extrudeFeatures;
       var prof = sketch.profiles.item(0);
       var extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
-      var distance = adsk.core.ValueInput.createByReal(this.thicknessMax);
+      var distance = adsk.core.ValueInput.createByReal(this.k);
       extInput.setDistanceExtent(false, distance);
       var headExt = extrudes.add(extInput);
       var fc = headExt.faces.item(0);
@@ -271,7 +264,7 @@ function run(context) {
       var ptColl = adsk.core.ObjectCollection.create();
       ptColl.add(centerHole);
       var holes = newComp.features.holeFeatures;
-      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.nominalDiameter));
+      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.d));
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       var hole = holes.add(holeInput);
