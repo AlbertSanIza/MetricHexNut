@@ -308,12 +308,12 @@ function run(context) {
       var point1 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, 0));
       var point2 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, 0));
       var point3 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, (point2.x - point1.x) * Math.tan(30 * (Math.PI / 180))));
-      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point1, point2);
-      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point2, point3);
-      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point3, point1);
       var point4 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, this.k - center.y));
       var point5 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, this.k - center.y));
       var point6 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, this.k - center.y - (point5.x - point4.x) * Math.tan(30 * (Math.PI / 180))));
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point1, point2);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point2, point3);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point3, point1);
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point4, point5);
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point5, point6);
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point6, point4);
