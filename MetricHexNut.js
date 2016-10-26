@@ -35,6 +35,7 @@ function run(context) {
     metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(4);
   }
   var lastSelectedItem = 'M1.6';
+  var customObjectBase = new Object();
   var app = adsk.core.Application.get(), ui;
   if (app) {
     ui = app.userInterface;
@@ -139,6 +140,20 @@ function run(context) {
                 }
               }
             }
+            if (selectedItem == 'Custom') {
+              for (var i = 0; i < inputs.count; i++) {
+                var input = inputs.item(i);
+                if (input.id === 'D') {
+                  customObjectBase.d = input.value;
+                } else if (input.id === 'Af') {
+                  customObjectBase.af = input.value;
+                } else if (input.id === 'Ac') {
+                  customObjectBase.ac = input.value;
+                } else if (input.id === 'K') {
+                  customObjectBase.k = input.value;
+                }
+              }
+            }
           }
           break;
         }
@@ -173,33 +188,13 @@ function run(context) {
         }
       }
       lastSelectedItem = selectedItem;
-      var toSave = new Object();
-      for (var i = 0; i < inputs.count; i++) {
-        var input = inputs.item(i);
-        if (input.id === 'D') {
-          toSave.d = input.value;
-        } else if (input.id === 'Af') {
-          toSave.af = input.value;
-        } else if (input.id === 'Ac') {
-          toSave.ac = input.value;
-        } else if (input.id === 'K') {
-          toSave.k = input.value;
-        }
-      }
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
         } else if (input.id === 'D') {
-          if (input.value <= 0 || input.value >= toSave.af) {
-            ui.messageBox("Invalid (d) value");
-          } else {
-            metricHexNut.d = input.value;
-          }
+          metricHexNut.d = input.value;
         } else if (input.id === 'Af') {
-          if () {
-
-          }
           metricHexNut.af = input.value;
         } else if (input.id === 'Ac') {
           metricHexNut.ac = input.value;
