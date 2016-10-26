@@ -217,7 +217,7 @@ function run(context) {
         }
       } else if (customObjectNow.ac != customObjectBase.ac) {
       } else if (customObjectNow.k != customObjectBase.k) {
-        if (customObjectNow.af <= 0) {
+        if (customObjectNow.af < 0.4) {
           ui.messageBox("(k) value not allowed!");
           isGood = false;
         }
