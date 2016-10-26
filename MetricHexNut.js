@@ -244,7 +244,6 @@ function run(context) {
       var fc = headExt.faces.item(0);
       var bd = fc.body;
       bd.name = this.metricHexNutName;
-      /*
       var endFaces = headExt.endFaces;
       var endFace = endFaces.item(0);
       var planes = newComp.constructionPlanes;
@@ -262,7 +261,6 @@ function run(context) {
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       var hole = holes.add(holeInput);
-      */
     };
   };
   try {
