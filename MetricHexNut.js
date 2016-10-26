@@ -261,6 +261,21 @@ function run(context) {
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       var hole = holes.add(holeInput);
+      var threadFeatures = newComp.features.threadFeatures;
+      var threadDataQuery = threadFeatures.threadDataQuery;
+      var defaultThreadType = threadDataQuery.defaultMetricThreadType;
+      var designate = {};
+      var threadClass = {};
+      var isOk = threadDataQuery.recommendThreadData(this.d, true, defaultThreadType, designate, threadClass);
+      if (isOk) {
+        var sideFace = hole.sideFaces.item(0);
+        var faces = adsk.core.ObjectCollection.create();
+        faces.add(sideFace);
+        var threadInfo = threadFeatures.createThreadInfo(true, defaultThreadType, designate.value, threadClass.value);
+        var threadInput = threadFeatures.createInput(faces, threadInfo);
+        threadInput.threadLength = adsk.core.ValueInput.createByReal(this.k);
+        threadFeatures.add(threadInput);
+      }
     };
   };
   try {
