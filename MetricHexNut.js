@@ -211,9 +211,11 @@ function run(context) {
           isGood = false;
         }
       } else if (customObjectNow.af != customObjectBase.af) {
-        if (customObjectNow.af >= customObjectNow.d) {
+        if (customObjectNow.af <= customObjectBase.d) {
           ui.messageBox("(af) value not allowed!");
           isGood = false;
+        } else {
+          customObjectNow.ac = (2 * customObjectNow.af) / Math.sqrt(3);
         }
       } else if (customObjectNow.ac != customObjectBase.ac) {
       } else if (customObjectNow.k != customObjectBase.k) {
