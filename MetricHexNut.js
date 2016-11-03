@@ -180,7 +180,7 @@ function run(context) {
       var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.d));
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
-      var hole = holes.add(holeInput);
+      holes.add(holeInput);
       var revolveSketch = sketches.add(newComp.xZConstructionPlane);
       var radius = this.ac / 2;
       var point1 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, 0));
