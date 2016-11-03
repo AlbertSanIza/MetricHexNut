@@ -141,9 +141,9 @@ function run(context) {
     this.buildMetricHexNut = function() {
       createNewComponent();
       if (!newComp) {
-          ui.messageBox('New component failed to create', 'New Component Failed');
-          adsk.terminate();
-          return;
+        ui.messageBox('New component failed to create', 'New Component Failed');
+        adsk.terminate();
+        return;
       }
       var sketches = newComp.sketches;
       var sketch = sketches.add(newComp.xYConstructionPlane);
