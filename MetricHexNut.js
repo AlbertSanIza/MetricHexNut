@@ -150,7 +150,7 @@ function run(context) {
       var xzPlane = newComp.xZConstructionPlane;
       var sketch = sketches.add(xyPlane);
       var center = adsk.core.Point3D.create(0, 0, 0);
-      var vertices =[];
+      var vertices = [];
       for (var i = 0; i < 6; i++) {
         var vertex = adsk.core.Point3D.create((this.af / Math.sqrt(3)) * Math.cos(Math.PI * i / 3 + (30 * (Math.PI / 180))), (this.af / Math.sqrt(3)) * Math.sin(Math.PI * i / 3 + (30 * (Math.PI / 180))), 0);
         vertices.push(vertex);
