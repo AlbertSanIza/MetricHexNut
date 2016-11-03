@@ -2,7 +2,6 @@
 //Description-Create a Metric Hex Nut
 function run(context) {
   "use strict";
-  var defaultMetricHexNutName = 'Metric Hex Nut';
   var metricHexNutMatrix = [
     {nominalSize: 'M1.6', d: 1.6, af: 3.2, k: 1.3},
     {nominalSize: 'M2',   d: 2,   af: 4,   k: 1.6},
@@ -73,7 +72,7 @@ function run(context) {
       });
       var inputs = command.commandInputs;
       inputs.addImageCommandInput("image", "", "resources/example.png");
-      inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', defaultMetricHexNutName);
+      inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', 'Metric Hex Nut');
       var initNominalSize = inputs.addDropDownCommandInput('nominalSize', 'Nominal Size', adsk.core.DropDownStyles.TextListDropDownStyle);
       initNominalSize.listItems.add(metricHexNutMatrix[0].nominalSize, true, '');
       for (var i = 1; i < metricHexNutMatrix.length; i++) {
@@ -251,7 +250,7 @@ function run(context) {
     }
   };
   var MetricHexNut = function() {
-    this.metricHexNutName = defaultMetricHexNutName;
+    this.metricHexNutName = 'Metric Hex Nut';
     this.d = metricHexNutMatrix[0].d;
     this.af = metricHexNutMatrix[0].af;
     this.ac = metricHexNutMatrix[0].ac;
