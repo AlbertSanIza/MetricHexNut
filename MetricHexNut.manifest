@@ -21,9 +21,7 @@
 		"meshBody",
 		"meshData",
 		"sketch",
-		"tSpline",
-		"operations",
-		"cam"
+		"tSpline"
 	],
 	"editEnabled":	true
 }
