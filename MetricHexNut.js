@@ -125,6 +125,7 @@ function run(context) {
           metricHexNut.k = unitsMgr.evaluateExpression(input.expression, "cm");
         }
       }
+      metricHexNut.buildMetricHexNut();
       args.isValidResult = true;
     }
     catch (e) {
@@ -138,6 +139,9 @@ function run(context) {
     this.ac = metricHexNutMatrix[0].ac;
     this.k = metricHexNutMatrix[0].k;
     this.thread;
+    this.buildMetricHexNut = function() {
+
+    };
   };
   try {
     if (adsk.debug === true) {
