@@ -92,12 +92,11 @@ function run(context) {
       var command = adsk.core.Command(args.firingEvent.sender);
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
-      var selectedItem;
       var selectedItemObject = new Object();
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'nominalSize') {
-          selectedItem = input.selectedItem.name;
+          var selectedItem = input.selectedItem.name;
           for (var j = 0; j < metricHexNutMatrix.length; j++) {
             if (selectedItem == metricHexNutMatrix[j].nominalSize) {
               selectedItemObject = metricHexNutMatrix[j];
