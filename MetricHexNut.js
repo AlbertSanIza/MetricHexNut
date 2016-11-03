@@ -181,6 +181,28 @@ function run(context) {
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       var hole = holes.add(holeInput);
+      var revolveSketch = sketches.add(newComp.xZConstructionPlane);
+      var radius = this.ac / 2;
+      var point1 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, 0));
+      var point2 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, 0));
+      var point3 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, (point2.x - point1.x) * Math.tan(30 * (Math.PI / 180))));
+      var point4 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, this.k - center.y));
+      var point5 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, this.k - center.y));
+      var point6 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, this.k - center.y - (point5.x - point4.x) * Math.tan(30 * (Math.PI / 180))));
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point1, point2);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point2, point3);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point3, point1);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point4, point5);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point5, point6);
+      revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point6, point4);
+      var revolves = newComp.features.revolveFeatures;
+      var revInputOne = revolves.createInput(revolveSketch.profiles.item(0), newComp.zConstructionAxis, adsk.fusion.FeatureOperations.CutFeatureOperation);
+      var revInputTwo = revolves.createInput(revolveSketch.profiles.item(1), newComp.zConstructionAxis, adsk.fusion.FeatureOperations.CutFeatureOperation);
+      var angle = adsk.core.ValueInput.createByReal(Math.PI * 2);
+      revInputOne.setAngleExtent(false, angle);
+      revInputTwo.setAngleExtent(false, angle);
+      revolves.add(revInputOne);
+      revolves.add(revInputTwo);
     };
   };
   try {
