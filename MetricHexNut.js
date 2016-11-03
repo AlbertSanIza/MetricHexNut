@@ -140,7 +140,25 @@ function run(context) {
     this.k = metricHexNutMatrix[0].k;
     this.thread;
     this.buildMetricHexNut = function() {
-
+      createNewComponent();
+      if (!newComp) {
+          ui.messageBox('New component failed to create', 'New Component Failed');
+          adsk.terminate();
+          return;
+      }
+      var sketches = newComp.sketches;
+      var xyPlane = newComp.xYConstructionPlane;
+      var xzPlane = newComp.xZConstructionPlane;
+      var sketch = sketches.add(xyPlane);
+      var center = adsk.core.Point3D.create(0, 0, 0);
+      var vertices =[];
+      for (var i = 0; i < 6; i++) {
+        var vertex = adsk.core.Point3D.create((this.af / Math.sqrt(3)) * Math.cos(Math.PI * i / 3 + (30 * (Math.PI / 180))), (this.af / Math.sqrt(3)) * Math.sin(Math.PI * i / 3 + (30 * (Math.PI / 180))), 0);
+        vertices.push(vertex);
+      }
+      for(i = 0; i < 6; i++) {
+        sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
+      }
     };
   };
   try {
