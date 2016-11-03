@@ -95,11 +95,14 @@ function run(context) {
       var unitsMgr = app.activeProduct.unitsManager;
       var command = adsk.core.Command(args.firingEvent.sender);
       var inputs = command.commandInputs;
+      var metricHexNut = new MetricHexNut();
       args.isValidResult = true;
     }
     catch (e) {
       ui.messageBox('Failed to create Metric Hex Nut: ' + (e.description ? e.description : e));
     }
+  };
+  var MetricHexNut = function() {
   };
   try {
     if (adsk.debug === true) {
