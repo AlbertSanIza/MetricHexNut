@@ -146,9 +146,7 @@ function run(context) {
           return;
       }
       var sketches = newComp.sketches;
-      var xyPlane = newComp.xYConstructionPlane;
-      var xzPlane = newComp.xZConstructionPlane;
-      var sketch = sketches.add(xyPlane);
+      var sketch = sketches.add(newComp.xYConstructionPlane);
       var center = adsk.core.Point3D.create(0, 0, 0);
       var vertices = [];
       for (var i = 0; i < 6; i++) {
