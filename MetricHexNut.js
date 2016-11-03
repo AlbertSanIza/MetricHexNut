@@ -112,12 +112,16 @@ function run(context) {
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
         } else if (input.id === 'D') {
+          input.value = selectedItemObject.d;
           metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Af') {
+          input.value = selectedItemObject.af;
           metricHexNut.af = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Ac') {
+          input.value = selectedItemObject.ac;
           metricHexNut.ac = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'K') {
+          input.value = selectedItemObject.k;
           metricHexNut.k = unitsMgr.evaluateExpression(input.expression, "cm");
         }
       }
