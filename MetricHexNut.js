@@ -24,14 +24,10 @@ function run(context) {
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
     metricHexNutMatrix[i].d = metricHexNutMatrix[i].d / 10;
-    metricHexNutMatrix[i].d = metricHexNutMatrix[i].d.toFixed(4);
     metricHexNutMatrix[i].ac = (2 * metricHexNutMatrix[i].af) / Math.sqrt(3);
     metricHexNutMatrix[i].af = metricHexNutMatrix[i].af / 10;
-    metricHexNutMatrix[i].af = metricHexNutMatrix[i].af.toFixed(4);
     metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac / 10;
-    metricHexNutMatrix[i].ac = metricHexNutMatrix[i].ac.toFixed(4);
     metricHexNutMatrix[i].k = metricHexNutMatrix[i].k / 10;
-    metricHexNutMatrix[i].k = metricHexNutMatrix[i].k.toFixed(4);
   }
   var app = adsk.core.Application.get(), ui;
   if (app) {
@@ -96,12 +92,25 @@ function run(context) {
       var command = adsk.core.Command(args.firingEvent.sender);
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
+      var selectedItem;
+      var selectedItemObject = new Object();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'nominalSize') {
+          selectedItem = input.selectedItem.name;
+          for (var j = 0; j < metricHexNutMatrix.length; j++) {
+            if (selectedItem == metricHexNutMatrix[j].nominalSize) {
+              selectedItemObject = metricHexNutMatrix[j];
+              break;
+            }
+          }
+          break;
+        }
+      }
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
-        } else if (input.id === 'nominalSize') {
-          ui.messageBox(input.id);
         } else if (input.id === 'D') {
           metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Af') {
