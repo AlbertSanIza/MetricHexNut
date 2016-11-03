@@ -155,7 +155,7 @@ function run(context) {
         var vertex = adsk.core.Point3D.create((this.af / Math.sqrt(3)) * Math.cos(Math.PI * i / 3 + (30 * (Math.PI / 180))), (this.af / Math.sqrt(3)) * Math.sin(Math.PI * i / 3 + (30 * (Math.PI / 180))), 0);
         vertices.push(vertex);
       }
-      for(i = 0; i < 6; i++) {
+      for (i = 0; i < 6; i++) {
         sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i + 1) % 6], vertices[i]);
       }
       var extrudedBody = newComp.features.extrudeFeatures;
