@@ -96,6 +96,22 @@ function run(context) {
       var command = adsk.core.Command(args.firingEvent.sender);
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'metricHexNutName') {
+          metricHexNut.metricHexNutName = input.value;
+        } else if (input.id === 'nominalSize') {
+          ui.messageBox(input.id);
+        } else if (input.id === 'D') {
+          metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'Af') {
+          metricHexNut.af = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'Ac') {
+          metricHexNut.ac = unitsMgr.evaluateExpression(input.expression, "cm");
+        } else if (input.id === 'K') {
+          metricHexNut.k = unitsMgr.evaluateExpression(input.expression, "cm");
+        }
+      }
       args.isValidResult = true;
     }
     catch (e) {
@@ -103,6 +119,12 @@ function run(context) {
     }
   };
   var MetricHexNut = function() {
+    this.metricHexNutName = 'Metric Hex Nut';
+    this.d = metricHexNutMatrix[0].d;
+    this.af = metricHexNutMatrix[0].af;
+    this.ac = metricHexNutMatrix[0].ac;
+    this.k = metricHexNutMatrix[0].k;
+    this.thread;
   };
   try {
     if (adsk.debug === true) {
