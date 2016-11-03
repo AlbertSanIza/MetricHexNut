@@ -52,7 +52,7 @@ function run(context) {
     var allOccs = rootComp.occurrences;
     var newOcc = allOccs.addNewComponent(adsk.core.Matrix3D.create());
     newComp = newOcc.component;
-  }
+  };
   var createCommandDefinition = function() {
     var commandDefinitions = ui.commandDefinitions;
     var cmDef = commandDefinitions.itemById('MetricHexNut');
