@@ -164,6 +164,23 @@ function run(context) {
       var ext = extrudes.add(extInput);
       var body = ext.bodies.item(0);
       body.name = this.metricHexNutName;
+      var endFaces = ext.endFaces;
+      var endFace = endFaces.item(0);
+      var planes = newComp.constructionPlanes;
+      var planeInput = planes.createInput();
+      var offsetVal = adsk.core.ValueInput.createByString('0 cm');
+      planeInput.setByOffset(endFace, offsetVal);
+      var offsetPlane = planes.add(planeInput);
+      var offsetSketch = sketches.add(offsetPlane);
+      var offsetSketchPoints = offsetSketch.sketchPoints;
+      var centerHole = offsetSketchPoints.add(center);
+      var ptColl = adsk.core.ObjectCollection.create();
+      ptColl.add(centerHole);
+      var holes = newComp.features.holeFeatures;
+      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.d));
+      holeInput.setPositionBySketchPoints(ptColl);
+      holeInput.setDistanceExtent(distance);
+      var hole = holes.add(holeInput);
     };
   };
   try {
