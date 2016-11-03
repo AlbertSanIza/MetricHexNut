@@ -69,8 +69,8 @@ function run(context) {
         adsk.terminate();
       });
       var inputs = command.commandInputs;
-      inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', 'Metric Hex Nut');
       inputs.addImageCommandInput("image", "", "resources/example.png");
+      inputs.addStringValueInput('metricHexNutName', 'Hex Nut Name', 'Metric Hex Nut');
       var initNominalSize = inputs.addDropDownCommandInput('nominalSize', 'Nominal Size', adsk.core.DropDownStyles.TextListDropDownStyle);
       initNominalSize.listItems.add(metricHexNutMatrix[0].nominalSize, true, '');
       for (var i = 1; i < metricHexNutMatrix.length; i++) {
