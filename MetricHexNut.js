@@ -83,8 +83,8 @@ function run(context) {
       inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
-      var threadText = inputs.addStringValueInput('thread', 'Thread Pitch', '');
-      threadText.isReadOnly = true;
+      inputs.addStringValueInput('thread', 'Thread Pitch', 'M1.6x0.35');
+      inputs.itemById('thread').isReadOnly = true;
     }
     catch (e) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
