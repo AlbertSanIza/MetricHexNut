@@ -10,6 +10,7 @@ function run(context) {
     {nominalSize: 'M4',   d: 4,   af: 7,   k: 3.2},
     {nominalSize: 'M5',   d: 5,   af: 8,   k: 4.7},
     {nominalSize: 'M6',   d: 6,   af: 10,  k: 5.2},
+    {nominalSize: 'M8',   d: 8,   af: 13,  k: 6.8},
     {nominalSize: 'M10',  d: 10,  af: 16,  k: 8.4},
     {nominalSize: 'M12',  d: 12,  af: 18,  k: 10.8},
     {nominalSize: 'M14',  d: 14,  af: 21,  k: 12.8},
@@ -20,7 +21,8 @@ function run(context) {
     {nominalSize: 'M36',  d: 36,  af: 55,  k: 31},
     {nominalSize: 'M42',  d: 42,  af: 65,  k: 34},
     {nominalSize: 'M48',  d: 48,  af: 75,  k: 38},
-    {nominalSize: 'M56',  d: 56,  af: 85,  k: 45}
+    {nominalSize: 'M56',  d: 56,  af: 85,  k: 45},
+    {nominalSize: 'M64',  d: 64,  af: 95,  k: 51}
   ];
   for (var i = 0; i < metricHexNutMatrix.length; i++) {
     metricHexNutMatrix[i].d = metricHexNutMatrix[i].d / 10;
