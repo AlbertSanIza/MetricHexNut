@@ -86,8 +86,8 @@ function run(context) {
       inputs.addStringValueInput('stringD', '(d) Diameter', '0.16 cm');
       inputs.addStringValueInput('stringAf', '(af) Width Across Flats', '0.32 cm');
       inputs.addStringValueInput('stringAc', '(ac) Width Across Corners', '0.37 cm');
-      inputs.addStringValueInput('stringK', '(d) Diameter', '0.13 cm');
-      inputs.addStringValueInput('stringThread', '(k) Thickness', 'M1.6x0.35');
+      inputs.addStringValueInput('stringK', '(k) Thickness', '0.13 cm');
+      inputs.addStringValueInput('stringThread', 'Thread Pitch', 'M1.6x0.35');
       inputs.itemById('D').isVisible = false;
       inputs.itemById('Af').isVisible = false;
       inputs.itemById('Ac').isVisible = false;
@@ -102,6 +102,7 @@ function run(context) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
     }
   };
+  var lastSelectedItem = "M1.6";
   var onCommandExecuted = function(args) {
     try {
       var unitsMgr = app.activeProduct.unitsManager;
@@ -114,6 +115,18 @@ function run(context) {
         if (selectedItem == metricHexNutMatrix[j].nominalSize) {
           selectedItemObject = metricHexNutMatrix[j];
           break;
+        }
+      }
+      if (selectedItem != lastSelectedItem) {
+        if (selectedItem == 'Custom' || lastSelectedItem == 'Custom') {
+          inputs.itemById('stringD').isVisible = selectedItem == 'Custom' ? false : true;
+          inputs.itemById('stringAf').isVisible = selectedItem == 'Custom' ? false : true;
+          inputs.itemById('stringAc').isVisible = selectedItem == 'Custom' ? false : true;
+          inputs.itemById('stringK').isVisible = selectedItem == 'Custom' ? false : true;
+          inputs.itemById('D').isVisible = selectedItem == 'Custom' ? true : false;
+          inputs.itemById('Af').isVisible = selectedItem == 'Custom' ? true : false;
+          inputs.itemById('Ac').isVisible = selectedItem == 'Custom' ? true : false;
+          inputs.itemById('K').isVisible = selectedItem == 'Custom' ? true : false;
         }
       }
       inputs.itemById('D').value = selectedItemObject.d;
@@ -130,6 +143,7 @@ function run(context) {
       inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
       inputs.itemById('stringK').value = inputs.itemById('K').expression;
       inputs.itemById('stringThread').value = metricHexNut.values.thread;
+      lastSelectedItem = selectedItem;
       args.isValidResult = true;
     }
     catch (e) {
