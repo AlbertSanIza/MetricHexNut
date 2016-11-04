@@ -88,6 +88,10 @@ function run(context) {
       inputs.addStringValueInput('stringAc', '(ac) Width Across Corners', '0.37 cm');
       inputs.addStringValueInput('stringK', '(d) Diameter', '0.13 cm');
       inputs.addStringValueInput('stringThread', '(k) Thickness', 'M1.6x0.35');
+      inputs.itemById('D').isVisible = false;
+      inputs.itemById('Af').isVisible = false;
+      inputs.itemById('Ac').isVisible = false;
+      inputs.itemById('K').isVisible = false;
       inputs.itemById('stringD').isReadOnly = true;
       inputs.itemById('stringAf').isReadOnly = true;
       inputs.itemById('stringAc').isReadOnly = true;
