@@ -129,13 +129,7 @@ function run(context) {
         }
       }
       metricHexNut.buildMetricHexNut();
-      for (var i = 0; i < inputs.count; i++) {
-        var input = inputs.item(i);
-        if (input.id === 'thread') {
-          input.value = metricHexNut.values.thread;
-          break;
-        }
-      }
+      inputs.itemById('thread').value = metricHexNut.values.thread;
       args.isValidResult = true;
     }
     catch (e) {
