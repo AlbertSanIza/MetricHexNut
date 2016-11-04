@@ -83,6 +83,8 @@ function run(context) {
       inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
+      var threadText = inputs.addStringValueInput('thread', 'Thread Pitch', '');
+      threadText.isReadOnly = true;
     }
     catch (e) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
@@ -127,6 +129,13 @@ function run(context) {
         }
       }
       metricHexNut.buildMetricHexNut();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'thread') {
+          input.value = metricHexNut.values.thread;
+          break;
+        }
+      }
       args.isValidResult = true;
     }
     catch (e) {
