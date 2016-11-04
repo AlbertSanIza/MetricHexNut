@@ -110,24 +110,14 @@ function run(context) {
           break;
         }
       }
-      for (var i = 0; i < inputs.count; i++) {
-        var input = inputs.item(i);
-        if (input.id === 'metricHexNutName') {
-          metricHexNut.values.metricHexNutName = input.value;
-        } else if (input.id === 'D') {
-          input.value = selectedItemObject.d;
-          metricHexNut.values.d = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'Af') {
-          input.value = selectedItemObject.af;
-          metricHexNut.values.af = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'Ac') {
-          input.value = selectedItemObject.ac;
-          metricHexNut.values.ac = unitsMgr.evaluateExpression(input.expression, "cm");
-        } else if (input.id === 'K') {
-          input.value = selectedItemObject.k;
-          metricHexNut.values.k = unitsMgr.evaluateExpression(input.expression, "cm");
-        }
-      }
+      inputs.itemById('D').value = selectedItemObject.d;
+      metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
+      inputs.itemById('Af').value = selectedItemObject.af;
+      metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
+      inputs.itemById('Ac').value = selectedItemObject.ac;
+      metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
+      inputs.itemById('K').value = selectedItemObject.k;
+      metricHexNut.values.k = unitsMgr.evaluateExpression(inputs.itemById('K').expression, "cm");
       metricHexNut.buildMetricHexNut();
       inputs.itemById('thread').value = metricHexNut.values.thread;
       args.isValidResult = true;
