@@ -203,6 +203,21 @@ function run(context) {
       revInputTwo.setAngleExtent(false, angle);
       revolves.add(revInputOne);
       revolves.add(revInputTwo);
+      var threadFeatures = newComp.features.threadFeatures;
+      var threadDataQuery = threadFeatures.threadDataQuery;
+      var defaultThreadType = threadDataQuery.defaultMetricThreadType;
+      var designate = new Object();
+      var threadClass = new Object();
+      var isOk = threadDataQuery.recommendThreadData(this.d, true, defaultThreadType, designate, threadClass);
+      if (isOk) {
+        this.thread = designate.value;
+        var hole = holes.item(0);
+        var sideFace = hole.sideFaces.item(0);
+        var threadInfo = threadFeatures.createThreadInfo(true, defaultThreadType, designate.value, threadClass.value);
+        var threadInput = threadFeatures.createInput(sideFace, threadInfo);
+        threadInput.threadLength = adsk.core.ValueInput.createByReal(this.k);
+        threadFeatures.add(threadInput);
+      }
     };
   };
   try {
