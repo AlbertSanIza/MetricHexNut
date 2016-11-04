@@ -76,15 +76,23 @@ function run(context) {
       }
       initNominalSize.listItems.add('Custom', false, '');
       var initD = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].d);
-      inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
       var initAf = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].af);
-      inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
       var initWidthAc = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].ac);
-      inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
+      inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
+      inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
+      inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
-      inputs.addStringValueInput('thread', 'Thread Pitch', 'M1.6x0.35');
-      inputs.itemById('thread').isReadOnly = true;
+      inputs.addStringValueInput('stringD', '(d) Diameter', '0.16 cm');
+      inputs.addStringValueInput('stringAf', '(af) Width Across Flats', '0.32 cm');
+      inputs.addStringValueInput('stringAc', '(ac) Width Across Corners', '0.37 cm');
+      inputs.addStringValueInput('stringK', '(d) Diameter', '0.13 cm');
+      inputs.addStringValueInput('stringThread', '(k) Thickness', 'M1.6x0.35');
+      inputs.itemById('stringD').isReadOnly = true;
+      inputs.itemById('stringAf').isReadOnly = true;
+      inputs.itemById('stringAc').isReadOnly = true;
+      inputs.itemById('stringK').isReadOnly = true;
+      inputs.itemById('stringThread').isReadOnly = true;
     }
     catch (e) {
       ui.messageBox('Failed to create command : ' + (e.description ? e.description : e));
@@ -105,15 +113,19 @@ function run(context) {
         }
       }
       inputs.itemById('D').value = selectedItemObject.d;
-      metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
       inputs.itemById('Af').value = selectedItemObject.af;
-      metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
       inputs.itemById('Ac').value = selectedItemObject.ac;
-      metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
       inputs.itemById('K').value = selectedItemObject.k;
+      metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
+      metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
+      metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
       metricHexNut.values.k = unitsMgr.evaluateExpression(inputs.itemById('K').expression, "cm");
       metricHexNut.buildMetricHexNut();
-      inputs.itemById('thread').value = metricHexNut.values.thread;
+      inputs.itemById('stringD').value = inputs.itemById('D').expression;
+      inputs.itemById('stringAf').value = inputs.itemById('Af').expression;
+      inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
+      inputs.itemById('stringK').value = inputs.itemById('K').expression;
+      inputs.itemById('stringThread').value = metricHexNut.values.thread;
       args.isValidResult = true;
     }
     catch (e) {
