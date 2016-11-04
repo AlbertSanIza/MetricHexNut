@@ -111,19 +111,19 @@ function run(context) {
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
-          metricHexNut.metricHexNutName = input.value;
+          metricHexNut.values.metricHexNutName = input.value;
         } else if (input.id === 'D') {
           input.value = selectedItemObject.d;
-          metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
+          metricHexNut.values.d = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Af') {
           input.value = selectedItemObject.af;
-          metricHexNut.af = unitsMgr.evaluateExpression(input.expression, "cm");
+          metricHexNut.values.af = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Ac') {
           input.value = selectedItemObject.ac;
-          metricHexNut.ac = unitsMgr.evaluateExpression(input.expression, "cm");
+          metricHexNut.values.ac = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'K') {
           input.value = selectedItemObject.k;
-          metricHexNut.k = unitsMgr.evaluateExpression(input.expression, "cm");
+          metricHexNut.values.k = unitsMgr.evaluateExpression(input.expression, "cm");
         }
       }
       metricHexNut.buildMetricHexNut();
@@ -134,12 +134,14 @@ function run(context) {
     }
   };
   var MetricHexNut = function() {
-    this.metricHexNutName = 'Metric Hex Nut';
-    this.d = metricHexNutMatrix[0].d;
-    this.af = metricHexNutMatrix[0].af;
-    this.ac = metricHexNutMatrix[0].ac;
-    this.k = metricHexNutMatrix[0].k;
-    this.thread;
+    this.values = {
+      metricHexNutName: 'Metric Hex Nut',
+      d: metricHexNutMatrix[0].d,
+      af: metricHexNutMatrix[0].af,
+      ac: metricHexNutMatrix[0].ac,
+      k: metricHexNutMatrix[0].k,
+      thread: ""
+    };
     this.buildMetricHexNut = function() {
       createNewComponent();
       if (!newComp) {
@@ -152,7 +154,7 @@ function run(context) {
       var center = adsk.core.Point3D.create(0, 0, 0);
       var vertices = [];
       for (var i = 0; i < 6; i++) {
-        var vertex = adsk.core.Point3D.create((this.af / Math.sqrt(3)) * Math.cos(Math.PI * i / 3 + (30 * (Math.PI / 180))), (this.af / Math.sqrt(3)) * Math.sin(Math.PI * i / 3 + (30 * (Math.PI / 180))), 0);
+        var vertex = adsk.core.Point3D.create((this.values.af / Math.sqrt(3)) * Math.cos(Math.PI * i / 3 + (30 * (Math.PI / 180))), (this.values.af / Math.sqrt(3)) * Math.sin(Math.PI * i / 3 + (30 * (Math.PI / 180))), 0);
         vertices.push(vertex);
       }
       for (i = 0; i < 6; i++) {
@@ -161,11 +163,11 @@ function run(context) {
       var prof = sketch.profiles.item(0);
       var extrudes = newComp.features.extrudeFeatures;
       var extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation);
-      var distance = adsk.core.ValueInput.createByReal(this.k);
+      var distance = adsk.core.ValueInput.createByReal(this.values.k);
       extInput.setDistanceExtent(false, distance);
       var ext = extrudes.add(extInput);
       var body = ext.bodies.item(0);
-      body.name = this.metricHexNutName;
+      body.name = this.values.metricHexNutName;
       var endFaces = ext.endFaces;
       var endFace = endFaces.item(0);
       var planes = newComp.constructionPlanes;
@@ -179,18 +181,18 @@ function run(context) {
       var ptColl = adsk.core.ObjectCollection.create();
       ptColl.add(centerHole);
       var holes = newComp.features.holeFeatures;
-      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.d));
+      var holeInput = holes.createSimpleInput(adsk.core.ValueInput.createByReal(this.values.d));
       holeInput.setPositionBySketchPoints(ptColl);
       holeInput.setDistanceExtent(distance);
       holes.add(holeInput);
       var revolveSketch = sketches.add(newComp.xZConstructionPlane);
-      var radius = this.ac / 2;
+      var radius = this.values.ac / 2;
       var point1 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, 0));
       var point2 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, 0));
       var point3 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, (point2.x - point1.x) * Math.tan(30 * (Math.PI / 180))));
-      var point4 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, this.k - center.y));
-      var point5 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, this.k - center.y));
-      var point6 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, this.k - center.y - (point5.x - point4.x) * Math.tan(30 * (Math.PI / 180))));
+      var point4 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius * Math.cos(Math.PI / 6), 0, this.values.k - center.y));
+      var point5 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(radius, 0, this.values.k - center.y));
+      var point6 = revolveSketch.modelToSketchSpace(adsk.core.Point3D.create(point2.x, 0, this.values.k - center.y - (point5.x - point4.x) * Math.tan(30 * (Math.PI / 180))));
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point1, point2);
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point2, point3);
       revolveSketch.sketchCurves.sketchLines.addByTwoPoints(point3, point1);
@@ -210,14 +212,14 @@ function run(context) {
       var defaultThreadType = threadDataQuery.defaultMetricThreadType;
       var designate = new Object();
       var threadClass = new Object();
-      var isOk = threadDataQuery.recommendThreadData(this.d, true, defaultThreadType, designate, threadClass);
+      var isOk = threadDataQuery.recommendThreadData(this.values.d, true, defaultThreadType, designate, threadClass);
       if (isOk) {
-        this.thread = designate.value;
+        this.values.thread = designate.value;
         var hole = holes.item(0);
         var sideFace = hole.sideFaces.item(0);
         var threadInfo = threadFeatures.createThreadInfo(true, defaultThreadType, designate.value, threadClass.value);
         var threadInput = threadFeatures.createInput(sideFace, threadInfo);
-        threadInput.threadLength = adsk.core.ValueInput.createByReal(this.k - (this.k * 0.01));
+        threadInput.threadLength = adsk.core.ValueInput.createByReal(this.values.k - (this.values.k * 0.01));
         threadFeatures.add(threadInput);
       }
     };
