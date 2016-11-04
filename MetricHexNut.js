@@ -108,21 +108,6 @@ function run(context) {
           break;
         }
       }
-      var customObjectNow = new Object();
-      for (var i = 0; i < inputs.count; i++) {
-        var input = inputs.item(i);
-        if (input.id === 'metricHexNutName') {
-          customObjectNow.metricHexNutName = input.value;
-        } else if (input.id === 'D') {
-          customObjectNow.d = input.value;
-        } else if (input.id === 'Af') {
-          customObjectNow.af = input.value;
-        } else if (input.id === 'Ac') {
-          customObjectNow.ac = input.value;
-        } else if (input.id === 'K') {
-          customObjectNow.k = input.value;
-        }
-      }
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
