@@ -215,7 +215,6 @@ function run(context) {
         var sideFace = hole.sideFaces.item(0);
         var threadInfo = threadFeatures.createThreadInfo(true, defaultThreadType, designate.value, threadClass.value);
         var threadInput = threadFeatures.createInput(sideFace, threadInfo);
-        threadInput.isFullLength = false;
         threadInput.threadLength = adsk.core.ValueInput.createByReal(this.k - (this.k * 0.01));
         threadFeatures.add(threadInput);
       }
