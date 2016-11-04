@@ -128,13 +128,11 @@ function run(context) {
           inputs.itemById('Ac').isVisible = selectedItem == 'Custom' ? true : false;
           inputs.itemById('K').isVisible = selectedItem == 'Custom' ? true : false;
         }
-        if (selectedItem != 'Custom') {
-          inputs.itemById('D').value = selectedItemObject.d;
-          inputs.itemById('Af').value = selectedItemObject.af;
-          inputs.itemById('Ac').value = selectedItemObject.ac;
-          inputs.itemById('K').value = selectedItemObject.k;
-        }
       }
+      inputs.itemById('D').value = selectedItemObject.d;
+      inputs.itemById('Af').value = selectedItemObject.af;
+      inputs.itemById('Ac').value = selectedItemObject.ac;
+      inputs.itemById('K').value = selectedItemObject.k;
       metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
       metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
       metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
