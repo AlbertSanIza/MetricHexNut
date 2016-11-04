@@ -108,13 +108,32 @@ function run(context) {
           break;
         }
       }
+      var customObjectNow = new Object();
+      for (var i = 0; i < inputs.count; i++) {
+        var input = inputs.item(i);
+        if (input.id === 'metricHexNutName') {
+          customObjectNow.metricHexNutName = input.value;
+        } else if (input.id === 'D') {
+          customObjectNow.d = input.value;
+        } else if (input.id === 'Af') {
+          customObjectNow.af = input.value;
+        } else if (input.id === 'Ac') {
+          customObjectNow.ac = input.value;
+        } else if (input.id === 'K') {
+          customObjectNow.k = input.value;
+        }
+      }
       for (var i = 0; i < inputs.count; i++) {
         var input = inputs.item(i);
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
         } else if (input.id === 'D') {
-          input.value = selectedItemObject.d;
-          metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
+          if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
+            ui.messageBox("(d) value not allowed!");
+          } else {
+            input.value = customObjectNow.d;
+            metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
+          }
         } else if (input.id === 'Af') {
           input.value = selectedItemObject.af;
           metricHexNut.af = unitsMgr.evaluateExpression(input.expression, "cm");
