@@ -128,12 +128,8 @@ function run(context) {
         if (input.id === 'metricHexNutName') {
           metricHexNut.metricHexNutName = input.value;
         } else if (input.id === 'D') {
-          if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
-            ui.messageBox("(d) value not allowed!");
-          } else {
-            input.value = customObjectNow.d;
-            metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
-          }
+          input.value = selectedItemObject.d;
+          metricHexNut.d = unitsMgr.evaluateExpression(input.expression, "cm");
         } else if (input.id === 'Af') {
           input.value = selectedItemObject.af;
           metricHexNut.af = unitsMgr.evaluateExpression(input.expression, "cm");
