@@ -97,16 +97,10 @@ function run(context) {
       var inputs = command.commandInputs;
       var metricHexNut = new MetricHexNut();
       var selectedItemObject = new Object();
-      for (var i = 0; i < inputs.count; i++) {
-        var input = inputs.item(i);
-        if (input.id === 'nominalSize') {
-          var selectedItem = input.selectedItem.name;
-          for (var j = 0; j < metricHexNutMatrix.length; j++) {
-            if (selectedItem == metricHexNutMatrix[j].nominalSize) {
-              selectedItemObject = metricHexNutMatrix[j];
-              break;
-            }
-          }
+      var selectedItem = inputs.itemById('nominalSize').selectedItem.name;
+      for (var j = 0; j < metricHexNutMatrix.length; j++) {
+        if (selectedItem == metricHexNutMatrix[j].nominalSize) {
+          selectedItemObject = metricHexNutMatrix[j];
           break;
         }
       }
