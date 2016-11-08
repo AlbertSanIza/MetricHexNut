@@ -159,9 +159,9 @@ function run(context) {
       }
       metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
       metricHexNut.values.d = isGood ? inputs.itemById('D').value : customObjectBase.d;
-      metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
-      metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
-      metricHexNut.values.k = unitsMgr.evaluateExpression(inputs.itemById('K').expression, "cm");
+      metricHexNut.values.af = isGood ? inputs.itemById('Af').value : customObjectBase.af;
+      metricHexNut.values.ac = isGood ? inputs.itemById('Ac').value : customObjectBase.ac;
+      metricHexNut.values.k = isGood ? inputs.itemById('K').value : customObjectBase.k;
       metricHexNut.buildMetricHexNut();
       inputs.itemById('stringD').value = inputs.itemById('D').expression;
       inputs.itemById('stringAf').value = inputs.itemById('Af').expression;
