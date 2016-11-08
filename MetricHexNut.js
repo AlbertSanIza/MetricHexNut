@@ -181,11 +181,11 @@ function run(context) {
       metricHexNut.values.af = isGood ? inputs.itemById('Af').value : customObjectBase.af;
       metricHexNut.values.ac = isGood ? inputs.itemById('Ac').value : customObjectBase.ac;
       metricHexNut.values.k = isGood ? inputs.itemById('K').value : customObjectBase.k;
-      metricHexNut.buildMetricHexNut();
       inputs.itemById('stringD').value = inputs.itemById('D').expression;
       inputs.itemById('stringAf').value = inputs.itemById('Af').expression;
       inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
       inputs.itemById('stringK').value = inputs.itemById('K').expression;
+      metricHexNut.buildMetricHexNut();
       inputs.itemById('stringThread').value = metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
       args.isValidResult = true;
