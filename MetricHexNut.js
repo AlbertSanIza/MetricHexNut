@@ -138,6 +138,7 @@ function run(context) {
            customObjectBase.k = inputs.itemById('K').value;
         }
       }
+      var isGood = true;
       var customObjectNow = new Object();
       if (selectedItem == 'Custom') {
         customObjectNow.d = inputs.itemById('D').value;
@@ -147,6 +148,7 @@ function run(context) {
         if (customObjectNow.d != customObjectBase.d) {
           if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
             ui.messageBox("(d) value not allowed!");
+            isGood = false;
           }
         }
       } else {
@@ -156,7 +158,7 @@ function run(context) {
         inputs.itemById('K').value = selectedItemObject.k;
       }
       metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
-      metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
+      metricHexNut.values.d = isGood ? inputs.itemById('D').value : customObjectBase.d;
       metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
       metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
       metricHexNut.values.k = unitsMgr.evaluateExpression(inputs.itemById('K').expression, "cm");
