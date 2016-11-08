@@ -155,6 +155,7 @@ function run(context) {
         inputs.itemById('Ac').value = selectedItemObject.ac;
         inputs.itemById('K').value = selectedItemObject.k;
       }
+      metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
       metricHexNut.values.d = unitsMgr.evaluateExpression(inputs.itemById('D').expression, "cm");
       metricHexNut.values.af = unitsMgr.evaluateExpression(inputs.itemById('Af').expression, "cm");
       metricHexNut.values.ac = unitsMgr.evaluateExpression(inputs.itemById('Ac').expression, "cm");
