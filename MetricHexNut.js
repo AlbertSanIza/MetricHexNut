@@ -151,12 +151,11 @@ function run(context) {
             isGood = false;
           }
         }
-      } else {
-        inputs.itemById('D').value = selectedItemObject.d;
-        inputs.itemById('Af').value = selectedItemObject.af;
-        inputs.itemById('Ac').value = selectedItemObject.ac;
-        inputs.itemById('K').value = selectedItemObject.k;
       }
+      inputs.itemById('D').value = selectedItem == 'Custom' ? customObjectNow.d : selectedItemObject.d;
+      inputs.itemById('Af').value = selectedItem == 'Custom' ? customObjectNow.af : selectedItemObject.af;
+      inputs.itemById('Ac').value = selectedItem == 'Custom' ? customObjectNow.ac : selectedItemObject.ac;
+      inputs.itemById('K').value = selectedItem == 'Custom' ? customObjectNow.k : selectedItemObject.k;
       metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
       metricHexNut.values.d = isGood ? inputs.itemById('D').value : customObjectBase.d;
       metricHexNut.values.af = isGood ? inputs.itemById('Af').value : customObjectBase.af;
