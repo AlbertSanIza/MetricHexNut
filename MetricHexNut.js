@@ -172,15 +172,22 @@ function run(context) {
           }
         }
       }
-      inputs.itemById('D').value = selectedItem == 'Custom' ? customObjectNow.d : selectedItemObject.d;
-      inputs.itemById('Af').value = selectedItem == 'Custom' ? customObjectNow.af : selectedItemObject.af;
-      inputs.itemById('Ac').value = selectedItem == 'Custom' ? customObjectNow.ac : selectedItemObject.ac;
-      inputs.itemById('K').value = selectedItem == 'Custom' ? customObjectNow.k : selectedItemObject.k;
+      if (selectedItem != 'Custom') {
+        inputs.itemById('D').value = selectedItemObject.d;
+        inputs.itemById('Af').value = selectedItemObject.af;
+        inputs.itemById('Ac').value = selectedItemObject.ac;
+        inputs.itemById('K').value = selectedItemObject.k;
+      } else {
+        inputs.itemById('D').value = isGood ? customObjectNow.d : customObjectBase.d;
+        inputs.itemById('Af').value = isGood ? customObjectNow.af : customObjectBase.af;
+        inputs.itemById('Ac').value = isGood ? customObjectNow.ac : customObjectBase.ac;
+        inputs.itemById('K').value = isGood ? customObjectNow.k : customObjectBase.k;
+      }
+      metricHexNut.values.d = inputs.itemById('D').value;
+      metricHexNut.values.af = inputs.itemById('Af').value;
+      metricHexNut.values.ac = inputs.itemById('Ac').value;
+      metricHexNut.values.k = inputs.itemById('K').value;
       metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
-      metricHexNut.values.d = isGood ? inputs.itemById('D').value : customObjectBase.d;
-      metricHexNut.values.af = isGood ? inputs.itemById('Af').value : customObjectBase.af;
-      metricHexNut.values.ac = isGood ? inputs.itemById('Ac').value : customObjectBase.ac;
-      metricHexNut.values.k = isGood ? inputs.itemById('K').value : customObjectBase.k;
       inputs.itemById('stringD').value = inputs.itemById('D').expression;
       inputs.itemById('stringAf').value = inputs.itemById('Af').expression;
       inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
