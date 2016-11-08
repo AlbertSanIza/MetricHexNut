@@ -111,10 +111,12 @@ function run(context) {
       var metricHexNut = new MetricHexNut();
       var selectedItemObject = new Object();
       var selectedItem = inputs.itemById('nominalSize').selectedItem.name;
-      for (var j = 0; j < metricHexNutMatrix.length; j++) {
-        if (selectedItem == metricHexNutMatrix[j].nominalSize) {
-          selectedItemObject = metricHexNutMatrix[j];
-          break;
+      if (selectedItem != 'Custom') {
+        for (var j = 0; j < metricHexNutMatrix.length; j++) {
+          if (selectedItem == metricHexNutMatrix[j].nominalSize) {
+            selectedItemObject = metricHexNutMatrix[j];
+            break;
+          }
         }
       }
       if (selectedItem != lastSelectedItem) {
