@@ -150,6 +150,26 @@ function run(context) {
             ui.messageBox("(d) value not allowed!");
             isGood = false;
           }
+        } else if (customObjectNow.af != customObjectBase.af) {
+          if (customObjectNow.af <= customObjectBase.d) {
+            ui.messageBox("(af) value not allowed!");
+            isGood = false;
+          } else {
+            customObjectNow.ac = (2 * customObjectNow.af) / Math.sqrt(3);
+          }
+        } else if (customObjectNow.ac != customObjectBase.ac) {
+          var af = (Math.sqrt(3) * customObjectNow.ac) / 2;
+          if (af <= customObjectBase.d) {
+            ui.messageBox("(ac) value not allowed!");
+            isGood = false;
+          } else {
+            customObjectNow.af = af;
+          }
+        } else if (customObjectNow.k != customObjectBase.k) {
+          if (customObjectNow.af < 0.4) {
+            ui.messageBox("(k) value not allowed!");
+            isGood = false;
+          }
         }
       }
       inputs.itemById('D').value = selectedItem == 'Custom' ? customObjectNow.d : selectedItemObject.d;
