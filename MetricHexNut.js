@@ -228,6 +228,10 @@ function run(context) {
       extInput.setDistanceExtent(false, distance);
       var ext = extrudes.add(extInput);
       var body = ext.bodies.item(0);
+      if (!this.values.metricHexNutName) {
+        this.values.metricHexNutName = "Metric Hex Nut";
+        ui.messageBox('Body must have a name');
+      }
       body.name = this.values.metricHexNutName;
       var endFaces = ext.endFaces;
       var endFace = endFaces.item(0);
