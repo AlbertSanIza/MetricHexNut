@@ -144,6 +144,11 @@ function run(context) {
         customObjectNow.af = inputs.itemById('Af').value;
         customObjectNow.ac = inputs.itemById('Ac').value;
         customObjectNow.k = inputs.itemById('K').value;
+        if (customObjectNow.d != customObjectBase.d) {
+          if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
+            ui.messageBox("(d) value not allowed!");
+          }
+        }
       }
       inputs.itemById('D').value = selectedItemObject.d;
       inputs.itemById('Af').value = selectedItemObject.af;
