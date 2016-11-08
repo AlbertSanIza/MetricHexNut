@@ -129,11 +129,6 @@ function run(context) {
           inputs.itemById('K').isVisible = selectedItem == 'Custom' ? true : false;
         }
       }
-      if (selectedItem != 'Custom') {
-
-      } else {
-
-      }
       inputs.itemById('D').value = selectedItemObject.d;
       inputs.itemById('Af').value = selectedItemObject.af;
       inputs.itemById('Ac').value = selectedItemObject.ac;
