@@ -103,6 +103,7 @@ function run(context) {
     }
   };
   var lastSelectedItem = "M1.6";
+  var customObjectBase = new Object();
   var onCommandExecuted = function(args) {
     try {
       var unitsMgr = app.activeProduct.unitsManager;
@@ -130,6 +131,19 @@ function run(context) {
           inputs.itemById('Ac').isVisible = selectedItem == 'Custom' ? true : false;
           inputs.itemById('K').isVisible = selectedItem == 'Custom' ? true : false;
         }
+        if (selectedItem == 'Custom') {
+           customObjectBase.d = inputs.itemById('D').value;
+           customObjectBase.af = inputs.itemById('Af').value;
+           customObjectBase.ac = inputs.itemById('Ac').value;
+           customObjectBase.k = inputs.itemById('K').value;
+        }
+      }
+      var customObjectNow = new Object();
+      if (selectedItem == 'Custom') {
+        customObjectNow.d = inputs.itemById('D').value;
+        customObjectNow.af = inputs.itemById('Af').value;
+        customObjectNow.ac = inputs.itemById('Ac').value;
+        customObjectNow.k = inputs.itemById('K').value;
       }
       inputs.itemById('D').value = selectedItemObject.d;
       inputs.itemById('Af').value = selectedItemObject.af;
