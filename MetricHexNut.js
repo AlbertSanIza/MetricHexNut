@@ -147,7 +147,7 @@ function run(context) {
         customObjectNow.k = inputs.itemById('K').value;
         if (customObjectNow.d != customObjectBase.d) {
           if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
-            ui.messageBox("(d) value not allowed!");
+            ui.messageBox("(d) value not allowed!\n\nGood:\n(d) > 0\n(d) < (af)");
             isGood = false;
           }
         } else if (customObjectNow.af != customObjectBase.af) {
