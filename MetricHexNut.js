@@ -80,10 +80,13 @@ function run(context) {
       var initWidthAc = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].ac);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
       inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
-      inputs.addValueInput('alternativeD', '(d) Diameter', 'cm', initD);
       inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
       inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
+      inputs.addValueInput('alternativeD', '(d) Diameter', 'cm', initD);
+      inputs.addValueInput('alternativeAf', '(af) Width Across Flats', 'cm', initAf);
+      inputs.addValueInput('alternativeAc', '(ac) Width Across Corners', 'cm', initWidthAc);
+      inputs.addValueInput('alternativeK', '(k) Thickness', 'cm', initK);
       inputs.addStringValueInput('stringD', '(d) Diameter', '0.16 cm');
       inputs.addStringValueInput('stringAf', '(af) Width Across Flats', '0.32 cm');
       inputs.addStringValueInput('stringAc', '(ac) Width Across Corners', '0.37 cm');
@@ -94,6 +97,9 @@ function run(context) {
       inputs.itemById('Ac').isVisible = false;
       inputs.itemById('K').isVisible = false;
       inputs.itemById('alternativeD').isVisible = false;
+      inputs.itemById('alternativeAf').isVisible = false;
+      inputs.itemById('alternativeAc').isVisible = false;
+      inputs.itemById('alternativeK').isVisible = false;
       inputs.itemById('stringD').isReadOnly = true;
       inputs.itemById('stringAf').isReadOnly = true;
       inputs.itemById('stringAc').isReadOnly = true;
