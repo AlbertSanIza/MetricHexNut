@@ -234,6 +234,7 @@ function run(context) {
       inputs.itemById('stringThread').value = alternative + " " + metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
       alternative = !alternative;
+      customObjectBase = isGood ? customObjectNow : customObjectBase;
       args.isValidResult = true;
     }
     catch (e) {
