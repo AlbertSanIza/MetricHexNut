@@ -135,6 +135,14 @@ function run(context) {
           inputs.itemById('stringAf').isVisible = selectedItem == 'Custom' ? false : true;
           inputs.itemById('stringAc').isVisible = selectedItem == 'Custom' ? false : true;
           inputs.itemById('stringK').isVisible = selectedItem == 'Custom' ? false : true;
+          inputs.itemById('D').isVisible = false;
+          inputs.itemById('Af').isVisible = false;
+          inputs.itemById('Ac').isVisible = false;
+          inputs.itemById('K').isVisible = false;
+          inputs.itemById('alternativeD').isVisible = false;
+          inputs.itemById('alternativeAf').isVisible = false;
+          inputs.itemById('alternativeAc').isVisible = false;
+          inputs.itemById('alternativeK').isVisible = false;
         }
         if (selectedItem == 'Custom') {
           customObjectBase.d = inputs.itemById('D').value;
