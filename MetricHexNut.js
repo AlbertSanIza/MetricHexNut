@@ -157,9 +157,9 @@ function run(context) {
       var customObjectNow = new Object();
       if (selectedItem == 'Custom') {
         customObjectNow.d = !alternative ? inputs.itemById('D').value : inputs.itemById('alternativeD').value;
-        customObjectNow.af = inputs.itemById('Af').value;
-        customObjectNow.ac = inputs.itemById('Ac').value;
-        customObjectNow.k = inputs.itemById('K').value;
+        customObjectNow.af = !alternative ? inputs.itemById('Af').value : inputs.itemById('alternativeAf').value;
+        customObjectNow.ac = !alternative ? inputs.itemById('Ac').value : inputs.itemById('alternativeAc').value;
+        customObjectNow.k = !alternative ? inputs.itemById('K').value : inputs.itemById('alternativeK').value;
         if (customObjectNow.d != customObjectBase.d) {
           if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
             ui.messageBox("(d) value not allowed!\n\nGood:\n(d) > 0\n(d) < (af)");
@@ -193,12 +193,19 @@ function run(context) {
         inputs.itemById('Ac').value = selectedItemObject.ac;
         inputs.itemById('K').value = selectedItemObject.k;
         inputs.itemById('alternativeD').value = inputs.itemById('D').value;
+        inputs.itemById('alternativeAf').value = inputs.itemById('Af').value;
+        inputs.itemById('alternativeAc').value = inputs.itemById('Ac').value;
+        inputs.itemById('alternativeK').value = inputs.itemById('K').value;
+
       } else {
         inputs.itemById('D').value = isGood ? customObjectNow.d : customObjectBase.d;
         inputs.itemById('Af').value = isGood ? customObjectNow.af : customObjectBase.af;
         inputs.itemById('Ac').value = isGood ? customObjectNow.ac : customObjectBase.ac;
         inputs.itemById('K').value = isGood ? customObjectNow.k : customObjectBase.k;
         inputs.itemById('alternativeD').value = inputs.itemById('D').value;
+        inputs.itemById('alternativeAf').value = inputs.itemById('Af').value;
+        inputs.itemById('alternativeAc').value = inputs.itemById('Ac').value;
+        inputs.itemById('alternativeK').value = inputs.itemById('K').value;
       }
       metricHexNut.values.d = inputs.itemById('D').value;
       metricHexNut.values.af = inputs.itemById('Af').value;
