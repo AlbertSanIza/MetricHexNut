@@ -80,6 +80,7 @@ function run(context) {
       var initWidthAc = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].ac);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
       inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
+      inputs.addValueInput('alternativeD', '(d) Diameter', 'cm', initD);
       inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
       inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
       inputs.addValueInput('K', '(k) Thickness', 'cm', initK);
@@ -92,6 +93,7 @@ function run(context) {
       inputs.itemById('Af').isVisible = false;
       inputs.itemById('Ac').isVisible = false;
       inputs.itemById('K').isVisible = false;
+      inputs.itemById('alternativeD').isVisible = false;
       inputs.itemById('stringD').isReadOnly = true;
       inputs.itemById('stringAf').isReadOnly = true;
       inputs.itemById('stringAc').isReadOnly = true;
@@ -104,6 +106,7 @@ function run(context) {
   };
   var lastSelectedItem = "M1.6";
   var customObjectBase = new Object();
+  var alternative = false;
   var onCommandExecuted = function(args) {
     try {
       var unitsMgr = app.activeProduct.unitsManager;
@@ -138,10 +141,14 @@ function run(context) {
           customObjectBase.k = inputs.itemById('K').value;
         }
       }
+      if (selectedItem == 'Custom') {
+        inputs.itemById('D').isVisible = alternative ? true : false;
+        inputs.itemById('alternativeD').isVisible = alternative ? false : true;
+      }
       var isGood = true;
       var customObjectNow = new Object();
       if (selectedItem == 'Custom') {
-        customObjectNow.d = inputs.itemById('D').value;
+        customObjectNow.d = !alternative ? inputs.itemById('D').value : inputs.itemById('alternativeD').value;
         customObjectNow.af = inputs.itemById('Af').value;
         customObjectNow.ac = inputs.itemById('Ac').value;
         customObjectNow.k = inputs.itemById('K').value;
@@ -177,11 +184,13 @@ function run(context) {
         inputs.itemById('Af').value = selectedItemObject.af;
         inputs.itemById('Ac').value = selectedItemObject.ac;
         inputs.itemById('K').value = selectedItemObject.k;
+        inputs.itemById('alternativeD').value = inputs.itemById('D').value;
       } else {
         inputs.itemById('D').value = isGood ? customObjectNow.d : customObjectBase.d;
         inputs.itemById('Af').value = isGood ? customObjectNow.af : customObjectBase.af;
         inputs.itemById('Ac').value = isGood ? customObjectNow.ac : customObjectBase.ac;
         inputs.itemById('K').value = isGood ? customObjectNow.k : customObjectBase.k;
+        inputs.itemById('alternativeD').value = inputs.itemById('D').value;
       }
       metricHexNut.values.d = inputs.itemById('D').value;
       metricHexNut.values.af = inputs.itemById('Af').value;
@@ -195,6 +204,7 @@ function run(context) {
       metricHexNut.buildMetricHexNut();
       inputs.itemById('stringThread').value = metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
+      alternative = !alternative;
       args.isValidResult = true;
     }
     catch (e) {
