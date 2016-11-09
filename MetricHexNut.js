@@ -231,7 +231,7 @@ function run(context) {
       inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
       inputs.itemById('stringK').value = inputs.itemById('K').expression;
       metricHexNut.buildMetricHexNut();
-      inputs.itemById('stringThread').value = alternative + " " + metricHexNut.values.thread;
+      inputs.itemById('stringThread').value = metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
       alternative = !alternative;
       customObjectBase = isGood ? customObjectNow : customObjectBase;
