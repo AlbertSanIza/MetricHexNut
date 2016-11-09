@@ -226,10 +226,14 @@ function run(context) {
       metricHexNut.values.ac = inputs.itemById('Ac').value;
       metricHexNut.values.k = inputs.itemById('K').value;
       metricHexNut.values.metricHexNutName = inputs.itemById('metricHexNutName').value;
-      inputs.itemById('stringD').value = inputs.itemById('D').expression;
-      inputs.itemById('stringAf').value = inputs.itemById('Af').expression;
-      inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
-      inputs.itemById('stringK').value = inputs.itemById('K').expression;
+      inputs.itemById('V').value = metricHexNut.values.d;
+      inputs.itemById('stringD').value = inputs.itemById('V').expression;
+      inputs.itemById('V').value = metricHexNut.values.af;
+      inputs.itemById('stringAf').value = inputs.itemById('V').expression;
+      inputs.itemById('V').value = metricHexNut.values.ac;
+      inputs.itemById('stringAc').value = inputs.itemById('V').expression;
+      inputs.itemById('V').value = metricHexNut.values.k;
+      inputs.itemById('stringK').value = inputs.itemById('V').expression;
       metricHexNut.buildMetricHexNut();
       inputs.itemById('stringThread').value = metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
