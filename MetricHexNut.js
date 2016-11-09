@@ -154,16 +154,6 @@ function run(context) {
           customObjectBase.k = inputs.itemById('K').value;
         }
       }
-      if (selectedItem == 'Custom') {
-        inputs.itemById('D').isVisible = alternative ? true : false;
-        inputs.itemById('Af').isVisible = alternative ? true : false;
-        inputs.itemById('Ac').isVisible = alternative ? true : false;
-        inputs.itemById('K').isVisible = alternative ? true : false;
-        inputs.itemById('alternativeD').isVisible = alternative ? false : true;
-        inputs.itemById('alternativeAf').isVisible = alternative ? false : true;
-        inputs.itemById('alternativeAc').isVisible = alternative ? false : true;
-        inputs.itemById('alternativeK').isVisible = alternative ? false : true;
-      }
       var isGood = true;
       var customObjectNow = new Object();
       if (selectedItem == 'Custom') {
@@ -220,6 +210,16 @@ function run(context) {
         inputs.itemById('alternativeAf').expression = inputs.itemById('Af').expression;
         inputs.itemById('alternativeAc').expression = inputs.itemById('Ac').expression;
         inputs.itemById('alternativeK').expression = inputs.itemById('K').expression;
+      }
+      if (selectedItem == 'Custom') {
+        inputs.itemById('D').isVisible = alternative ? true : false;
+        inputs.itemById('Af').isVisible = alternative ? true : false;
+        inputs.itemById('Ac').isVisible = alternative ? true : false;
+        inputs.itemById('K').isVisible = alternative ? true : false;
+        inputs.itemById('alternativeD').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeAf').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeAc').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeK').isVisible = alternative ? false : true;
       }
       metricHexNut.values.d = inputs.itemById('D').value;
       metricHexNut.values.af = inputs.itemById('Af').value;
