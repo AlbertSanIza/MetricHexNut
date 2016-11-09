@@ -161,9 +161,6 @@ function run(context) {
         customObjectNow.af = !alternative ? inputs.itemById('Af').value : inputs.itemById('alternativeAf').value;
         customObjectNow.ac = !alternative ? inputs.itemById('Ac').value : inputs.itemById('alternativeAc').value;
         customObjectNow.k = !alternative ? inputs.itemById('K').value : inputs.itemById('alternativeK').value;
-        var radius = customObjectNow.ac / 2;
-        var cut = (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
-        var distance = customObjectNow.k - cut;
         if (customObjectNow.d != customObjectBase.d) {
           if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
             ui.messageBox("(d) value not allowed!\n\nGood:\n(d) > 0\n(d) < (af)");
@@ -176,6 +173,13 @@ function run(context) {
           } else {
             customObjectNow.ac = (2 * customObjectNow.af) / Math.sqrt(3);
           }
+          var radius = customObjectNow.ac / 2;
+          var cut = (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
+          var distance = customObjectNow.k - cut;
+          if (distance <= 0) {
+            ui.messageBox("(k) value not allowed!\n\nGood:\n(k) > " + cut);
+            isGood = false;
+          }
         } else if (customObjectNow.ac != customObjectBase.ac) {
           var af = (Math.sqrt(3) * customObjectNow.ac) / 2;
           if (af <= customObjectBase.d) {
@@ -184,7 +188,17 @@ function run(context) {
           } else {
             customObjectNow.af = af;
           }
+          var radius = customObjectNow.ac / 2;
+          var cut = (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
+          var distance = customObjectNow.k - cut;
+          if (distance <= 0) {
+            ui.messageBox("(k) value not allowed!\n\nGood:\n(k) > " + cut);
+            isGood = false;
+          }
         } else if (customObjectNow.k != customObjectBase.k) {
+          var radius = customObjectNow.ac / 2;
+          var cut = (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
+          var distance = customObjectNow.k - cut;
           if (distance <= 0) {
             ui.messageBox("(k) value not allowed!\n\nGood:\n(k) > " + cut);
             isGood = false;
