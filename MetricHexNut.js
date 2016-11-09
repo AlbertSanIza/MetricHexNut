@@ -182,7 +182,9 @@ function run(context) {
             customObjectNow.af = af;
           }
         } else if (customObjectNow.k != customObjectBase.k) {
-          if (customObjectNow.af < 0.4) {
+          var radius = customObjectNow.ac / 2;
+          var distance = customObjectNow.k - (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
+          if (distance <= 0) {
             ui.messageBox("(k) value not allowed!");
             isGood = false;
           }
