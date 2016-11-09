@@ -161,6 +161,9 @@ function run(context) {
         customObjectNow.af = !alternative ? inputs.itemById('Af').value : inputs.itemById('alternativeAf').value;
         customObjectNow.ac = !alternative ? inputs.itemById('Ac').value : inputs.itemById('alternativeAc').value;
         customObjectNow.k = !alternative ? inputs.itemById('K').value : inputs.itemById('alternativeK').value;
+        var radius = customObjectNow.ac / 2;
+        var cut = (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
+        var distance = customObjectNow.k - cut;
         if (customObjectNow.d != customObjectBase.d) {
           if (customObjectNow.d <= 0 || customObjectNow.d >= customObjectNow.af) {
             ui.messageBox("(d) value not allowed!\n\nGood:\n(d) > 0\n(d) < (af)");
@@ -182,10 +185,8 @@ function run(context) {
             customObjectNow.af = af;
           }
         } else if (customObjectNow.k != customObjectBase.k) {
-          var radius = customObjectNow.ac / 2;
-          var distance = customObjectNow.k - (2 * ((radius - (radius * Math.cos(Math.PI / 6))) * Math.tan(30 * (Math.PI / 180))));
           if (distance <= 0) {
-            ui.messageBox("(k) value not allowed!");
+            ui.messageBox("(k) value not allowed!\n\nGood:\n(k) > " + cut);
             isGood = false;
           }
         }
