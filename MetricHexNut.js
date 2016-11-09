@@ -135,10 +135,6 @@ function run(context) {
           inputs.itemById('stringAf').isVisible = selectedItem == 'Custom' ? false : true;
           inputs.itemById('stringAc').isVisible = selectedItem == 'Custom' ? false : true;
           inputs.itemById('stringK').isVisible = selectedItem == 'Custom' ? false : true;
-          inputs.itemById('D').isVisible = selectedItem == 'Custom' ? true : false;
-          inputs.itemById('Af').isVisible = selectedItem == 'Custom' ? true : false;
-          inputs.itemById('Ac').isVisible = selectedItem == 'Custom' ? true : false;
-          inputs.itemById('K').isVisible = selectedItem == 'Custom' ? true : false;
         }
         if (selectedItem == 'Custom') {
           customObjectBase.d = inputs.itemById('D').value;
@@ -149,7 +145,13 @@ function run(context) {
       }
       if (selectedItem == 'Custom') {
         inputs.itemById('D').isVisible = alternative ? true : false;
+        inputs.itemById('Af').isVisible = alternative ? true : false;
+        inputs.itemById('Ac').isVisible = alternative ? true : false;
+        inputs.itemById('K').isVisible = alternative ? true : false;
         inputs.itemById('alternativeD').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeAf').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeAc').isVisible = alternative ? false : true;
+        inputs.itemById('alternativeK').isVisible = alternative ? false : true;
       }
       var isGood = true;
       var customObjectNow = new Object();
