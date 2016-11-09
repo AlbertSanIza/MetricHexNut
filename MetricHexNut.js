@@ -202,10 +202,10 @@ function run(context) {
         inputs.itemById('Af').value = isGood ? customObjectNow.af : customObjectBase.af;
         inputs.itemById('Ac').value = isGood ? customObjectNow.ac : customObjectBase.ac;
         inputs.itemById('K').value = isGood ? customObjectNow.k : customObjectBase.k;
-        inputs.itemById('alternativeD').value = inputs.itemById('D').value;
-        inputs.itemById('alternativeAf').value = inputs.itemById('Af').value;
-        inputs.itemById('alternativeAc').value = inputs.itemById('Ac').value;
-        inputs.itemById('alternativeK').value = inputs.itemById('K').value;
+        inputs.itemById('alternativeD').expression = inputs.itemById('D').expression;
+        inputs.itemById('alternativeAf').expression = inputs.itemById('Af').expression;
+        inputs.itemById('alternativeAc').expression = inputs.itemById('Ac').expression;
+        inputs.itemById('alternativeK').expression = inputs.itemById('K').expression;
       }
       metricHexNut.values.d = inputs.itemById('D').value;
       metricHexNut.values.af = inputs.itemById('Af').value;
@@ -217,7 +217,7 @@ function run(context) {
       inputs.itemById('stringAc').value = inputs.itemById('Ac').expression;
       inputs.itemById('stringK').value = inputs.itemById('K').expression;
       metricHexNut.buildMetricHexNut();
-      inputs.itemById('stringThread').value = metricHexNut.values.thread;
+      inputs.itemById('stringThread').value = alternative + " " + metricHexNut.values.thread;
       lastSelectedItem = selectedItem;
       alternative = !alternative;
       args.isValidResult = true;
