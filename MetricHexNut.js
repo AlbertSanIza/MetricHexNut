@@ -176,7 +176,7 @@ function run(context) {
         } else if (customObjectNow.ac != customObjectBase.ac) {
           var af = (Math.sqrt(3) * customObjectNow.ac) / 2;
           if (af <= customObjectBase.d) {
-            ui.messageBox("(ac) value not allowed!");
+            ui.messageBox("(ac) value not allowed!\n\nGood:\n(af) > (d)");
             isGood = false;
           } else {
             customObjectNow.af = af;
