@@ -75,10 +75,12 @@ function run(context) {
         initNominalSize.listItems.add(metricHexNutMatrix[i].nominalSize, false, '');
       }
       initNominalSize.listItems.add('Custom', false, '');
+      var initVisa = adsk.core.ValueInput.createByReal(0);
       var initD = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].d);
       var initAf = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].af);
       var initWidthAc = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].ac);
       var initK = adsk.core.ValueInput.createByReal(metricHexNutMatrix[0].k);
+      inputs.addValueInput('V', 'Visa', 'cm', initVisa);
       inputs.addValueInput('D', '(d) Diameter', 'cm', initD);
       inputs.addValueInput('Af', '(af) Width Across Flats', 'cm', initAf);
       inputs.addValueInput('Ac', '(ac) Width Across Corners', 'cm', initWidthAc);
@@ -92,6 +94,7 @@ function run(context) {
       inputs.addStringValueInput('stringAc', '(ac) Width Across Corners', '0.37 cm');
       inputs.addStringValueInput('stringK', '(k) Thickness', '0.13 cm');
       inputs.addStringValueInput('stringThread', 'Thread Pitch', 'M1.6x0.35');
+      inputs.itemById('V').isVisible = false;
       inputs.itemById('D').isVisible = false;
       inputs.itemById('Af').isVisible = false;
       inputs.itemById('Ac').isVisible = false;
@@ -205,10 +208,14 @@ function run(context) {
         inputs.itemById('alternativeAc').value = inputs.itemById('Ac').value;
         inputs.itemById('alternativeK').value = inputs.itemById('K').value;
       } else {
-        inputs.itemById('D').expression = isGood ? customObjectNow.d + "cm" : customObjectBase.d + "cm" ;
-        inputs.itemById('Af').expression = isGood ? customObjectNow.af + "cm": customObjectBase.af + "cm";
-        inputs.itemById('Ac').expression = isGood ? customObjectNow.ac + "cm": customObjectBase.ac + "cm";
-        inputs.itemById('K').expression = isGood ? customObjectNow.k + "cm": customObjectBase.k + "cm";
+        inputs.itemById('V').value = isGood ? customObjectNow.d : customObjectBase.d;
+        inputs.itemById('D').expression = inputs.itemById('V').expression;
+        inputs.itemById('V').value = isGood ? customObjectNow.af : customObjectBase.af;
+        inputs.itemById('Af').expression = inputs.itemById('V').expression;
+        inputs.itemById('V').value = isGood ? customObjectNow.ac : customObjectBase.ac;
+        inputs.itemById('Ac').expression = inputs.itemById('V').expression;
+        inputs.itemById('V').value = isGood ? customObjectNow.k : customObjectBase.k;
+        inputs.itemById('K').expression = inputs.itemById('V').expression;
         inputs.itemById('alternativeD').expression = inputs.itemById('D').expression;
         inputs.itemById('alternativeAf').expression = inputs.itemById('Af').expression;
         inputs.itemById('alternativeAc').expression = inputs.itemById('Ac').expression;
