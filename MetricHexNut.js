@@ -204,12 +204,11 @@ function run(context) {
         inputs.itemById('alternativeAf').value = inputs.itemById('Af').value;
         inputs.itemById('alternativeAc').value = inputs.itemById('Ac').value;
         inputs.itemById('alternativeK').value = inputs.itemById('K').value;
-
       } else {
-        inputs.itemById('D').value = isGood ? customObjectNow.d : customObjectBase.d;
-        inputs.itemById('Af').value = isGood ? customObjectNow.af : customObjectBase.af;
-        inputs.itemById('Ac').value = isGood ? customObjectNow.ac : customObjectBase.ac;
-        inputs.itemById('K').value = isGood ? customObjectNow.k : customObjectBase.k;
+        inputs.itemById('D').expression = isGood ? customObjectNow.d + "cm" : customObjectBase.d + "cm" ;
+        inputs.itemById('Af').expression = isGood ? customObjectNow.af + "cm": customObjectBase.af + "cm";
+        inputs.itemById('Ac').expression = isGood ? customObjectNow.ac + "cm": customObjectBase.ac + "cm";
+        inputs.itemById('K').expression = isGood ? customObjectNow.k + "cm": customObjectBase.k + "cm";
         inputs.itemById('alternativeD').expression = inputs.itemById('D').expression;
         inputs.itemById('alternativeAf').expression = inputs.itemById('Af').expression;
         inputs.itemById('alternativeAc').expression = inputs.itemById('Ac').expression;
