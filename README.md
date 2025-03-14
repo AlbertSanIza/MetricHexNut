@@ -1,5 +1,7 @@
 # Metric Hex Nut
 
+![image](https://github.com/user-attachments/assets/ef89e7af-8d2b-445b-948c-1479d419bea2)
+
 ## Author
 Albert Sanchez
 
